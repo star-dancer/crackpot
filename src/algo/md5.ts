@@ -4,7 +4,7 @@ import { Hasher } from "../core/hasher";
 import { WordArray } from "../core/word-array";
 import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
 // Constants table
-const T: Array<number> = [];
+const T: number[] = [];
 
 // Compute constants
 for (let i = 0; i < 64; i++) {
@@ -70,12 +70,6 @@ export class MD5Algo extends Hasher {
 
   public reset(): void {
     super.reset();
-    this._hash = new WordArray([
-      0x67_45_23_01, 0xef_cd_ab_89, 0x98_ba_dc_fe, 0x10_32_54_76
-    ]);
-  }
-
-  _doReset(): void {
     this._hash = new WordArray([
       0x67_45_23_01, 0xef_cd_ab_89, 0x98_ba_dc_fe, 0x10_32_54_76
     ]);
@@ -181,6 +175,7 @@ export class MD5Algo extends Hasher {
     c = II(c, d, a, b, M_offset_2, 15, T[62]);
     b = II(b, c, d, a, M_offset_9, 21, T[63]);
 
+    // Intermediate hash value
     H[0] = (H[0] + a) | 0;
     H[1] = (H[1] + b) | 0;
     H[2] = (H[2] + c) | 0;

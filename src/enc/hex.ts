@@ -19,7 +19,8 @@ export const Hex: Encoding = {
     const words: number[] = [];
     for (let i = 0; i < hexStrLength; i += 2) {
       words[i >>> 3] |=
-        Number.parseInt(hexStr.slice(i, 3), 16) << (24 - (i % 8) * 4);
+        // eslint-disable-next-line unicorn/prefer-string-slice
+        Number.parseInt(hexStr.substr(i, 2), 16) << (24 - (i % 8) * 4);
     }
     return new WordArray(words, hexStrLength / 2);
   }
