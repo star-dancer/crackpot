@@ -2,7 +2,7 @@
 /* eslint-disable unicorn/prefer-math-trunc,jsdoc/require-jsdoc */
 import { Hasher } from "../core/hasher";
 import { WordArray } from "../core/word-array";
-import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
+// import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
 // Constants table
 const T: number[] = [];
 
@@ -64,9 +64,9 @@ function II(
 
 export class MD5Algo extends Hasher {
   private _hash!: WordArray;
-  public constructor(cfg?: BufferedBlockAlgorithmConfig) {
-    super(cfg ? cfg : { blockSize: 512 / 32 });
-  }
+  // public constructor(cfg?: BufferedBlockAlgorithmConfig) {
+  //   super(cfg ? cfg : { blockSize: 512 / 32 });
+  // }
 
   public reset(): void {
     super.reset();
@@ -193,6 +193,7 @@ export class MD5Algo extends Hasher {
 
     const nBitsTotalH = Math.floor(nBitsTotal / 0x1_00_00_00_00);
     const nBitsTotalL = nBitsTotal;
+
     dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 15] =
       (((nBitsTotalH << 8) | (nBitsTotalH >>> 24)) & 0x00_ff_00_ff) |
       (((nBitsTotalH << 24) | (nBitsTotalH >>> 8)) & 0xff_00_ff_00);
@@ -200,7 +201,9 @@ export class MD5Algo extends Hasher {
     dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 14] =
       (((nBitsTotalL << 8) | (nBitsTotalL >>> 24)) & 0x00_ff_00_ff) |
       (((nBitsTotalL << 24) | (nBitsTotalL >>> 8)) & 0xff_00_ff_00);
+
     data.sigBytes = (dataWords.length + 1) * 4;
+
     this._process();
 
     const hash = this._hash;

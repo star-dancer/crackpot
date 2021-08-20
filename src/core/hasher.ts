@@ -26,7 +26,7 @@ export abstract class Hasher extends BufferedBlockAlgorithm {
     return hash;
   }
   public static _createHelper(hasher: typeof Hasher): CreateHelperType {
-    function helper(
+    return function (
       message: WordArray | string,
       cfg?: BufferedBlockAlgorithmConfig
     ): WordArray {
@@ -35,8 +35,7 @@ export abstract class Hasher extends BufferedBlockAlgorithm {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const hasherInstance: any = new haserClass(cfg);
       return hasherInstance.finalize(message);
-    }
-    return helper;
+    };
   }
 
   public abstract _doFinalize(): WordArray;
