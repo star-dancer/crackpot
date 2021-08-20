@@ -77,7 +77,7 @@ export class MD5Algo extends Hasher {
 
   _doProcessBlock(M: number[], offset: number): void {
     for (let i = 0; i < 16; i++) {
-      const offset_i = offset + 1;
+      const offset_i = offset + i;
       const M_offset_i = M[offset_i];
       M[offset_i] =
         (((M_offset_i << 8) | (M_offset_i >>> 24)) & 0x00_ff_00_ff) |
