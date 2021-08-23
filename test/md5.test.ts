@@ -1,5 +1,5 @@
-import { MD5 } from "../src/algo/md5.algo";
-import { TestConstant } from "./test.constant";
+import { MD5 } from "../src";
+import { TestConstant } from "./constant/test.constant";
 
 const testMine = MD5(TestConstant.TEST_STR).toString();
 

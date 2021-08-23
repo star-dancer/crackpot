@@ -1,8 +1,7 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc,jsdoc/require-jsdoc */
-import { Hasher } from "../core/hasher";
-import { WordArray } from "../core/word-array";
-// import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
+import { Hasher } from "@/core/hasher";
+import { WordArray } from "@/core/word-array";
 // Constants table
 const T: number[] = [];
 
@@ -218,7 +217,3 @@ export class MD5Algo extends Hasher {
     return hash;
   }
 }
-
-export const MD5 = Hasher._createHelper(MD5Algo);
-
-export const HmacMD5 = Hasher._createHmacHelper(MD5Algo);

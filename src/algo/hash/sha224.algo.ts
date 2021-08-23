@@ -1,5 +1,6 @@
-import { Hasher } from "../core/hasher";
-import { WordArray } from "../core/word-array";
+import { Hasher } from "@/core/hasher";
+import { WordArray } from "@/core/word-array";
+
 import { SHA256Algo } from "./sha256.algo";
 
 export class SHA224Algo extends SHA256Algo {
@@ -17,6 +18,3 @@ export class SHA224Algo extends SHA256Algo {
     return hash;
   }
 }
-export const SHA224 = Hasher._createHelper(SHA224Algo);
-
-export const HmacSHA224 = Hasher._createHmacHelper(SHA224Algo);

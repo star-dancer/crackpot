@@ -1,7 +1,7 @@
-import { Hasher } from "../core/hasher";
-import { WordArray } from "../core/word-array";
-import { X64Word } from "../core/x64-word";
-import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
+import { Hasher } from "@/core/hasher";
+import { WordArray } from "@/core/word-array";
+import { X64Word } from "@/core/x64-word";
+import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 
 const RHO_OFFSETS: number[] = [];
 const PI_INDEXES: number[] = [];
@@ -226,7 +226,3 @@ export class SHA3Algo extends Hasher {
     }
   }
 }
-
-export const SHA3 = Hasher._createHelper(SHA3Algo);
-
-export const HmacSHA3 = Hasher._createHmacHelper(SHA3Algo);

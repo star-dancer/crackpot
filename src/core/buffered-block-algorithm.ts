@@ -1,5 +1,6 @@
-import { Utf8 } from "../enc/utf8";
-import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
+import { Utf8 } from "@/enc/utf8";
+import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
+
 import { WordArray } from "./word-array";
 
 export abstract class BufferedBlockAlgorithm {

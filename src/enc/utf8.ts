@@ -1,5 +1,6 @@
-import { WordArray } from "../core/word-array";
-import { Encoding } from "../typings/core/encoding.typing";
+import { WordArray } from "@/core/word-array";
+import { Encoding } from "@/typings/core/encoding.typing";
+
 import { Latin1 } from "./latin1";
 
 export const Utf8: Encoding = {

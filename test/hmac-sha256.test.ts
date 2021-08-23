@@ -1,5 +1,5 @@
-import { HmacSHA256 } from "../src/algo/sha256.algo";
-import { TestConstant } from "./test.constant";
+import { HmacSHA256 } from "../src";
+import { TestConstant } from "./constant/test.constant";
 
 const testMine = HmacSHA256(
   TestConstant.TEST_STR,

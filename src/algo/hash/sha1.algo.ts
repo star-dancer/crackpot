@@ -1,7 +1,7 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc */
-import { Hasher } from "../core/hasher";
-import { WordArray } from "../core/word-array";
+import { Hasher } from "@/core/hasher";
+import { WordArray } from "@/core/word-array";
 
 // Reusable object
 const W: Array<number> = [];
@@ -74,7 +74,3 @@ export class SHA1Algo extends Hasher {
     H[4] = (H[4] + e) | 0;
   }
 }
-
-export const SHA1 = Hasher._createHelper(SHA1Algo);
-
-export const HmacSHA1 = Hasher._createHmacHelper(SHA1Algo);

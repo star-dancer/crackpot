@@ -1,5 +1,5 @@
-import { SHA3 } from "../src/algo/sha3.algo";
-import { TestConstant } from "./test.constant";
+import { SHA3 } from "../src";
+import { TestConstant } from "./constant/test.constant";
 
 const testMine = SHA3(TestConstant.TEST_STR).toString();
 

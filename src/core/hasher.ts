@@ -1,7 +1,8 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc,jsdoc/require-jsdoc */
-import { Type } from "../typings/common.typing";
-import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
+import { Type } from "@/typings/common.typing";
+import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
+
 import { BufferedBlockAlgorithm } from "./buffered-block-algorithm";
 import { HmacHasher } from "./hmac-hasher";
 import { WordArray } from "./word-array";

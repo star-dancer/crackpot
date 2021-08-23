@@ -1,5 +1,6 @@
-import { Utf8 } from "../enc/utf8";
-import { Type } from "../typings/common.typing";
+import { Utf8 } from "@/enc/utf8";
+import { Type } from "@/typings/common.typing";
+
 import { Hasher } from "./hasher";
 import { WordArray } from "./word-array";
 

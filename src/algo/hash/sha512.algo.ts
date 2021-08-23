@@ -1,8 +1,8 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc */
-import { Hasher } from "../core/hasher";
-import { WordArray } from "../core/word-array";
-import { X64Word, X64WordArray } from "../core/x64-word";
+import { Hasher } from "@/core/hasher";
+import { WordArray } from "@/core/word-array";
+import { X64Word, X64WordArray } from "@/core/x64-word";
 
 const K = [
   new X64Word(0x42_8a_2f_98, 0xd7_28_ae_22),
@@ -317,7 +317,3 @@ export class SHA512Algo extends Hasher {
     H7.high = H7h + hh + (H7l >>> 0 < hl >>> 0 ? 1 : 0);
   }
 }
-
-export const SHA512 = Hasher._createHelper(SHA512Algo);
-
-export const HmacSHA512 = Hasher._createHmacHelper(SHA512Algo);

@@ -1,6 +1,6 @@
-import { Hasher } from "../core/hasher";
-import { WordArray } from "../core/word-array";
-import { X64Word, X64WordArray } from "../core/x64-word";
+import { WordArray } from "@/core/word-array";
+import { X64Word, X64WordArray } from "@/core/x64-word";
+
 import { SHA512Algo } from "./sha512.algo";
 
 export class SHA384Algo extends SHA512Algo {
@@ -24,7 +24,3 @@ export class SHA384Algo extends SHA512Algo {
     return hash;
   }
 }
-
-export const SHA384 = Hasher._createHelper(SHA384Algo);
-
-export const HmacSHA384 = Hasher._createHmacHelper(SHA384Algo);

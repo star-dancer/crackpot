@@ -1,5 +1,5 @@
-import { Hex } from "../enc/hex";
-import { Encoding } from "../typings/core/encoding.typing";
+import { Hex } from "@/enc/hex";
+import { Encoding } from "@/typings/core/encoding.typing";
 
 export class WordArray {
   public words: number[];

@@ -1,5 +1,5 @@
-import { WordArray } from "../core/word-array";
-import { Encoding } from "../typings/core/encoding.typing";
+import { WordArray } from "@/core/word-array";
+import { Encoding } from "@/typings/core/encoding.typing";
 
 export const Hex: Encoding = {
   stringify(wordArray: WordArray): string {

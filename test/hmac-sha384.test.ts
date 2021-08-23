@@ -1,5 +1,5 @@
-import { HmacSHA384 } from "../src/algo/sha384.algo";
-import { TestConstant } from "./test.constant";
+import { HmacSHA384 } from "../src";
+import { TestConstant } from "./constant/test.constant";
 
 const testMine = HmacSHA384(
   TestConstant.TEST_STR,
