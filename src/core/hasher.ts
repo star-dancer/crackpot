@@ -1,7 +1,9 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc,jsdoc/require-jsdoc */
+import { Type } from "../typings/common.typing";
 import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
 import { BufferedBlockAlgorithm } from "./buffered-block-algorithm";
+import { HmacHasher } from "./hmac-hasher";
 import { WordArray } from "./word-array";
 
 export abstract class Hasher extends BufferedBlockAlgorithm {
@@ -25,16 +27,21 @@ export abstract class Hasher extends BufferedBlockAlgorithm {
     const hash = this._doFinalize();
     return hash;
   }
-  public static _createHelper(hasher: typeof Hasher): CreateHelperType {
+  public static _createHelper(hasher: Type<Hasher>): CreateHelperType {
     return function (
       message: WordArray | string,
       cfg?: BufferedBlockAlgorithmConfig
     ): WordArray {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const haserClass: any = hasher;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const hasherInstance: any = new haserClass(cfg);
+      const hasherClass: Type<Hasher> = hasher;
+      const hasherInstance: Hasher = new hasherClass(cfg);
       return hasherInstance.finalize(message);
+    };
+  }
+
+  public static _createHmacHelper(hasher: Type<Hasher>) {
+    return function (message: WordArray | string, key: string): WordArray {
+      const hmacInstance = new HmacHasher(hasher, key);
+      return hmacInstance.finalize(message);
     };
   }
 

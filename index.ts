@@ -1,7 +1,6 @@
-import { MD5 } from "./src/algo/md5";
+import { HmacMD5, MD5 } from "./src/algo/md5";
 
-const test = MD5("1");
+const test = HmacMD5("123", "123");
 
-console.log("res: " + test.toString());
-console.log("err: c23c15034ac59d8bbff68a34376e02ac");
-console.log("suc: c4ca4238a0b923820dcc509a6f75849b");
+console.log(test.toString());
+console.log("b2a1ec0f3e0607099d7f39791c04e9a4");

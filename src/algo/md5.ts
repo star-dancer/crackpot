@@ -220,3 +220,5 @@ export class MD5Algo extends Hasher {
 }
 
 export const MD5 = Hasher._createHelper(MD5Algo);
+
+export const HmacMD5 = Hasher._createHmacHelper(MD5Algo);
