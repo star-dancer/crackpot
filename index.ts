@@ -1,4 +1,4 @@
-import { HmacMD5, MD5 } from "./src/algo/md5";
+import { HmacMD5, MD5 } from "./src/algo/md5.algo";
 
 const test = HmacMD5("123", "123");
 
