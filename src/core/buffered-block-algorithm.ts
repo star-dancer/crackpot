@@ -8,7 +8,7 @@ export abstract class BufferedBlockAlgorithm {
   public _data: WordArray;
 
   public _nDataBytes: number;
-  private _minBufferSize: number = 0;
+  public _minBufferSize: number = 0;
 
   constructor(cfg?: BufferedBlockAlgorithmConfig) {
     this._data = new WordArray();

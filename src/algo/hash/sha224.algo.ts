@@ -1,4 +1,3 @@
-import { Hasher } from "@/core/hash/hasher";
 import { WordArray } from "@/core/word-array";
 
 import { SHA256Algo } from "./sha256.algo";

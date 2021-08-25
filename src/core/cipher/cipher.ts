@@ -2,11 +2,11 @@ import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algo
 import { CipherConfig, CipherHelper } from "@/typings/core/cipher.typing";
 import { CipherStrategy } from "@/typings/core/cipher-strategy.typing";
 
-import { BufferedBlockAlgorithm } from "./buffered-block-algorithm";
+import { BufferedBlockAlgorithm } from "../buffered-block-algorithm";
+import { WordArray } from "../word-array";
 import { CipherParams } from "./cipher-params";
 import { PasswordBasedCipher } from "./password-based-cipher";
 import { SerializableCipher } from "./serializable-cipher";
-import { WordArray } from "./word-array";
 
 export abstract class Cipher extends BufferedBlockAlgorithm {
   public static keySize = 128 / 32;
@@ -23,12 +23,16 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     return new thisClass(this._ENC_XFORM_MODE, key, cfg);
   }
 
-  public cfg: CipherConfig;
+  public cfg: BufferedBlockAlgorithmConfig;
   public _xformMode: number;
   public _key: WordArray;
   public static _ENC_XFORM_MODE = 1;
   public static _DEC_XFORM_MODE = 2;
-  constructor(xformMode: number, key: WordArray, cfg: CipherConfig) {
+  constructor(
+    xformMode: number,
+    key: WordArray,
+    cfg: BufferedBlockAlgorithmConfig
+  ) {
     super();
     this.cfg = cfg;
     this._xformMode = xformMode;
