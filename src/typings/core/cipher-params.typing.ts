@@ -1,7 +1,9 @@
-import { Cipher } from "@/core/cipher";
+import { Cipher } from "@/core/cipher/cipher";
 import { WordArray } from "@/core/word-array";
+import { BlockCipherMode } from "@/mode/block-cipher-mode";
 
 import { Formatter } from "../format/format.typing";
+import { Padding } from "../padding.typing";
 
 export interface CipherParamsInterface {
   ciphertext?: WordArray;
@@ -14,9 +16,9 @@ export interface CipherParamsInterface {
 
   algorithm?: typeof Cipher;
 
-  mode?: unknown;
+  mode?: typeof BlockCipherMode;
 
-  padding?: unknown;
+  padding?: Padding;
 
   blockSize?: number;
 

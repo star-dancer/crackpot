@@ -1,5 +1,7 @@
+import { BlockCipherMode } from "@/mode/block-cipher-mode";
 import { CipherParamsInterface } from "@/typings/core/cipher-params.typing";
 import { Formatter } from "@/typings/format/format.typing";
+import { Padding } from "@/typings/padding.typing";
 
 import { WordArray } from "../word-array";
 import { Cipher } from "./cipher";
@@ -12,14 +14,15 @@ export class CipherParams implements CipherParamsInterface {
   salt?: WordArray | string;
 
   algorithm?: typeof Cipher;
-  mode?: unknown;
+  mode?: typeof BlockCipherMode;
 
-  padding?: unknown;
+  padding?: Padding;
   blockSize?: number;
 
   formatter?: Formatter;
 
   constructor(cipherParams: CipherParamsInterface) {
+    console.log("con:", cipherParams);
     this.ciphertext = cipherParams.ciphertext;
     this.key = cipherParams.key;
     this.iv = cipherParams.iv;
@@ -32,10 +35,10 @@ export class CipherParams implements CipherParamsInterface {
   }
 
   public extend(additionalParams: CipherParams): CipherParams {
-    if (additionalParams.ciphertext === undefined) {
+    if (additionalParams.ciphertext !== undefined) {
       this.ciphertext = additionalParams.ciphertext;
     }
-    if (additionalParams.key === undefined) {
+    if (additionalParams.key !== undefined) {
       this.key = additionalParams.key;
     }
     if (additionalParams.iv !== undefined) {
@@ -69,6 +72,7 @@ export class CipherParams implements CipherParamsInterface {
   }
 
   public toString(formatter?: Formatter): string {
+    console.log(this);
     if (formatter) {
       return formatter.stringify(this);
     } else if (this.formatter) {

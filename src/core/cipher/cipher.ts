@@ -1,5 +1,5 @@
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
-import { CipherConfig, CipherHelper } from "@/typings/core/cipher.typing";
+import { CipherHelper } from "@/typings/core/cipher.typing";
 import { CipherStrategy } from "@/typings/core/cipher-strategy.typing";
 
 import { BufferedBlockAlgorithm } from "../buffered-block-algorithm";
@@ -11,13 +11,19 @@ import { SerializableCipher } from "./serializable-cipher";
 export abstract class Cipher extends BufferedBlockAlgorithm {
   public static keySize = 128 / 32;
   public static ivSize = 128 / 32;
-  public static createEncryptor(key: WordArray, cfg: CipherConfig): Cipher {
+  public static createEncryptor(
+    key: WordArray,
+    cfg: BufferedBlockAlgorithmConfig
+  ): Cipher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any,unicorn/no-this-assignment,@typescript-eslint/no-this-alias
     const thisClass: any = this;
     return new thisClass(this._ENC_XFORM_MODE, key, cfg);
   }
 
-  public static createDecryptor(key: WordArray, cfg: CipherConfig): Cipher {
+  public static createDecryptor(
+    key: WordArray,
+    cfg: BufferedBlockAlgorithmConfig
+  ): Cipher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any,unicorn/no-this-assignment,@typescript-eslint/no-this-alias
     const thisClass: any = this;
     return new thisClass(this._ENC_XFORM_MODE, key, cfg);
@@ -40,6 +46,12 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
 
     this.reset();
   }
+
+  reset() {
+    super.reset.call(this);
+    this._doReset();
+  }
+
   public process(dataUpdate: WordArray | string): WordArray {
     this._append(dataUpdate);
     return this._process();
@@ -51,6 +63,8 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     const finalProcessedData = this._doFinalize();
     return finalProcessedData;
   }
+  public abstract _doReset(): void;
+
   public static _createHelper(cipher: typeof Cipher): CipherHelper {
     // eslint-disable-next-line unicorn/consistent-function-scoping
     const selectCipherStrategy: (_key: string | WordArray) => CipherStrategy = (
