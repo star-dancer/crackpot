@@ -1,8 +1,8 @@
 import { Utf8 } from "@/enc/utf8";
 import { Type } from "@/typings/common.typing";
 
+import { WordArray } from "../word-array";
 import { Hasher } from "./hasher";
-import { WordArray } from "./word-array";
 
 export class HmacHasher {
   private _hasher: Hasher;

@@ -1,7 +1,7 @@
 import { MD5Algo } from "@/algo/hash/md5.algo";
 import { SHA1Algo } from "@/algo/hash/sha1.algo";
 import { SHA3Algo } from "@/algo/hash/sha3.algo";
-import { Hasher } from "@/core/hasher";
+import { Hasher } from "@/core/hash/hasher";
 
 import { RIPEMD160Algo } from "./algo/hash/ripemd160.algo";
 import { SHA224Algo } from "./algo/hash/sha224.algo";

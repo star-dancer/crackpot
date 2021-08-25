@@ -1,4 +1,4 @@
-import { Hasher } from "@/core/hasher";
+import { Hasher } from "@/core/hash/hasher";
 
 import { Type } from "../common.typing";
 

@@ -1,5 +1,4 @@
 import { WordArray } from "@/core/word-array";
-import { Encoding } from "@/typings/core/encoding.typing";
 
 export class Base64 {
   public _map =

@@ -1,4 +1,4 @@
-import { Hasher } from "@/core/hasher";
+import { Hasher } from "@/core/hash/hasher";
 import { WordArray } from "@/core/word-array";
 import { X64Word } from "@/core/x64-word";
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";

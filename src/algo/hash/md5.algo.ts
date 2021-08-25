@@ -1,6 +1,6 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc,jsdoc/require-jsdoc */
-import { Hasher } from "@/core/hasher";
+import { Hasher } from "@/core/hash/hasher";
 import { WordArray } from "@/core/word-array";
 // Constants table
 const T: number[] = [];

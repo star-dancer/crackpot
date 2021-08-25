@@ -3,9 +3,9 @@
 import { Type } from "@/typings/common.typing";
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 
-import { BufferedBlockAlgorithm } from "./buffered-block-algorithm";
+import { BufferedBlockAlgorithm } from "../buffered-block-algorithm";
+import { WordArray } from "../word-array";
 import { HmacHasher } from "./hmac-hasher";
-import { WordArray } from "./word-array";
 
 export abstract class Hasher extends BufferedBlockAlgorithm {
   public constructor(cfg?: BufferedBlockAlgorithmConfig) {
