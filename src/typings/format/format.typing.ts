@@ -1,4 +1,4 @@
-import { CipherParams } from "@/core/cipher-params";
+import { CipherParams } from "@/core/cipher/cipher-params";
 
 export interface Formatter {
   stringify: (_cipherParams: CipherParams) => string;

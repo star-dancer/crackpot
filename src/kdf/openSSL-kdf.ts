@@ -1,5 +1,5 @@
 import { EvpKDF } from "@/algo/kdf/evp-kdf";
-import { CipherParams } from "@/core/cipher-params";
+import { CipherParams } from "@/core/cipher/cipher-params";
 import { WordArray } from "@/core/word-array";
 import { KDF } from "@/typings/kdf/kdf.typing";
 

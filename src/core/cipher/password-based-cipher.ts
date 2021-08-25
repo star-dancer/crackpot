@@ -4,10 +4,10 @@ import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algo
 import { CipherStrategy } from "@/typings/core/cipher-strategy.typing";
 import { Formatter } from "@/typings/format/format.typing";
 
+import { WordArray } from "../word-array";
 import { Cipher } from "./cipher";
 import { CipherParams } from "./cipher-params";
 import { SerializableCipher } from "./serializable-cipher";
-import { WordArray } from "./word-array";
 
 export const PasswordBasedCipher: CipherStrategy = {
   cfg: {

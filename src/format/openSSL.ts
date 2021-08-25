@@ -1,6 +1,6 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-spread */
-import { CipherParams } from "@/core/cipher-params";
+import { CipherParams } from "@/core/cipher/cipher-params";
 import { WordArray } from "@/core/word-array";
 import { Base64 } from "@/enc/base64";
 import { Formatter } from "@/typings/format/format.typing";

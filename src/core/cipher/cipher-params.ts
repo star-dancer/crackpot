@@ -1,8 +1,8 @@
 import { CipherParamsInterface } from "@/typings/core/cipher-params.typing";
 import { Formatter } from "@/typings/format/format.typing";
 
+import { WordArray } from "../word-array";
 import { Cipher } from "./cipher";
-import { WordArray } from "./word-array";
 
 export class CipherParams implements CipherParamsInterface {
   ciphertext?: WordArray;

@@ -1,5 +1,5 @@
 import { Cipher } from "@/core/cipher";
-import { CipherParams } from "@/core/cipher-params";
+import { CipherParams } from "@/core/cipher/cipher-params";
 import { WordArray } from "@/core/word-array";
 
 import { BufferedBlockAlgorithmConfig } from "./buffered-block-algorithm.typing";
