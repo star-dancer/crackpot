@@ -1,14 +1,11 @@
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 import { CipherHelper } from "@/typings/core/cipher.typing";
-import { CipherStrategy } from "@/typings/core/cipher-strategy.typing";
 
 import { BufferedBlockAlgorithm } from "../buffered-block-algorithm";
 import { WordArray } from "../word-array";
 import { CipherParams } from "./cipher-params";
 import { PasswordBasedCipher } from "./password-based-cipher";
 import { SerializableCipher } from "./serializable-cipher";
-
-type CipherStrategyArrow = (_key: string | WordArray) => CipherStrategy;
 
 /**
  * 基础密码模板抽象类
@@ -77,29 +74,24 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
   public abstract _doReset(): void;
 
   public static _createHelper(cipher: typeof Cipher): CipherHelper {
-    const selectCipherStrategy: CipherStrategyArrow = (
-      key: string | WordArray
-      // eslint-disable-next-line unicorn/consistent-function-scoping
-    ) => {
-      if (typeof key === "string") {
-        return PasswordBasedCipher;
-      }
-      return SerializableCipher;
-    };
     return {
       encrypt(
         message: WordArray | string,
         key: WordArray | string,
         cfg?: BufferedBlockAlgorithmConfig
       ): CipherParams {
-        return selectCipherStrategy(key).encrypt(cipher, message, key, cfg);
+        return typeof key === "string"
+          ? PasswordBasedCipher.encrypt(cipher, message, key, cfg)
+          : SerializableCipher.encrypt(cipher, message, key, cfg);
       },
       decrypt(
         ciphertext: CipherParams | string,
         key: WordArray | string,
         cfg?: BufferedBlockAlgorithmConfig
       ) {
-        return selectCipherStrategy(key).decrypt(cipher, ciphertext, key, cfg);
+        return typeof key === "string"
+          ? PasswordBasedCipher.decrypt(cipher, ciphertext, key, cfg)
+          : SerializableCipher.decrypt(cipher, ciphertext, key, cfg);
       }
     };
   }
