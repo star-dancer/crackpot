@@ -24,10 +24,10 @@ export const OpenSSL: Formatter = {
       wordArray = ciphertext;
     }
 
-    return wordArray.toString(new Base64());
+    return wordArray.toString(Base64);
   },
   parse(openSSlStr: string): CipherParams {
-    const ciphertext = new Base64().parse(openSSlStr);
+    const ciphertext = Base64.parse(openSSlStr);
 
     let salt: WordArray | undefined;
     if (

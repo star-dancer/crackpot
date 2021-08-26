@@ -8,6 +8,8 @@ import { CipherParams } from "./cipher-params";
 import { PasswordBasedCipher } from "./password-based-cipher";
 import { SerializableCipher } from "./serializable-cipher";
 
+type CipherStrategyArrow = (_key: string | WordArray) => CipherStrategy;
+
 export abstract class Cipher extends BufferedBlockAlgorithm {
   public static keySize = 128 / 32;
   public static ivSize = 128 / 32;
@@ -66,8 +68,7 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
   public abstract _doReset(): void;
 
   public static _createHelper(cipher: typeof Cipher): CipherHelper {
-    // eslint-disable-next-line unicorn/consistent-function-scoping
-    const selectCipherStrategy: (_key: string | WordArray) => CipherStrategy = (
+    const selectCipherStrategy: CipherStrategyArrow = (
       key: string | WordArray
       // eslint-disable-next-line unicorn/consistent-function-scoping
     ) => {
