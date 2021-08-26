@@ -22,7 +22,6 @@ export class CipherParams implements CipherParamsInterface {
   formatter?: Formatter;
 
   constructor(cipherParams: CipherParamsInterface) {
-    console.log("con:", cipherParams);
     this.ciphertext = cipherParams.ciphertext;
     this.key = cipherParams.key;
     this.iv = cipherParams.iv;
@@ -72,7 +71,6 @@ export class CipherParams implements CipherParamsInterface {
   }
 
   public toString(formatter?: Formatter): string {
-    console.log(this);
     if (formatter) {
       return formatter.stringify(this);
     } else if (this.formatter) {

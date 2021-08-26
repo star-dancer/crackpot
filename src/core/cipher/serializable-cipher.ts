@@ -9,10 +9,9 @@ import { CipherParams } from "./cipher-params";
 
 export const SerializableCipher: CipherStrategy = {
   cfg: {
-    blockSize: 4,
     iv: new WordArray([]),
     format: OpenSSL
-  },
+  } as BufferedBlockAlgorithmConfig,
 
   encrypt(
     cipher: typeof Cipher,
@@ -23,7 +22,6 @@ export const SerializableCipher: CipherStrategy = {
     const config = Object.assign({}, this.cfg, cfg);
 
     const encryptor = cipher.createEncryptor(key, config);
-
     const ciphertext = encryptor.finalize(message);
     return new CipherParams({
       ciphertext,

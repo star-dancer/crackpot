@@ -28,7 +28,7 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
   ): Cipher {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any,unicorn/no-this-assignment,@typescript-eslint/no-this-alias
     const thisClass: any = this;
-    return new thisClass(this._ENC_XFORM_MODE, key, cfg);
+    return new thisClass(this._DEC_XFORM_MODE, key, cfg);
   }
 
   public cfg: BufferedBlockAlgorithmConfig;
@@ -49,7 +49,7 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     this.reset();
   }
 
-  reset() {
+  reset(): void {
     super.reset.call(this);
     this._doReset();
   }

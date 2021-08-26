@@ -11,11 +11,10 @@ import { SerializableCipher } from "./serializable-cipher";
 
 export const PasswordBasedCipher: CipherStrategy = {
   cfg: {
-    blockSize: 4,
     iv: new WordArray([]),
     format: OpenSSL,
     kdf: OpenSSLKdf
-  },
+  } as BufferedBlockAlgorithmConfig,
 
   encrypt(
     cipher: typeof Cipher,

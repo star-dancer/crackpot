@@ -1,4 +1,4 @@
-import { Cipher } from "@/core/cipher";
+import { Cipher } from "@/core/cipher/cipher";
 import { CipherParams } from "@/core/cipher/cipher-params";
 import { WordArray } from "@/core/word-array";
 

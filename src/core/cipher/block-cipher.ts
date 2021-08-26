@@ -1,4 +1,6 @@
 import { BlockCipherModeAlgorithm } from "@/mode/block-cipher-mode-algorithm";
+import { CBC } from "@/mode/CBC";
+import { PKCS7 } from "@/pad/pkcs7";
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 
 import { WordArray } from "../word-array";
@@ -18,8 +20,8 @@ export abstract class BlockCipher extends Cipher {
       Object.assign(
         {
           blockSize: 4,
-          mode: "",
-          padding: ""
+          mode: CBC,
+          padding: PKCS7
         },
         cfg
       )
