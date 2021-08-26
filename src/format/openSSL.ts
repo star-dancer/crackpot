@@ -5,6 +5,9 @@ import { WordArray } from "@/core/word-array";
 import { Base64 } from "@/enc/base64";
 import { Formatter } from "@/typings/format/format.typing";
 
+/**
+ * OpenSSL 格式化策略
+ */
 export const OpenSSL: Formatter = {
   stringify(cipherParams: CipherParams): string {
     if (!cipherParams.ciphertext) {

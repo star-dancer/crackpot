@@ -59,6 +59,14 @@ function rotl(x: number, n: number): number {
   return (x << n) | (x >>> (32 - n));
 }
 
+/**
+ * RIPEMD160算法
+ *
+ * @author rikka
+ * @exports
+ * @class RIPEMD160Algo
+ * @augments {Hasher}
+ */
 export class RIPEMD160Algo extends Hasher {
   public _hash!: WordArray;
   reset(): void {

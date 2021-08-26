@@ -6,6 +6,15 @@ import { Padding } from "@/typings/padding.typing";
 import { WordArray } from "../word-array";
 import { Cipher } from "./cipher";
 
+/**
+ * CipherParams
+ * 密码参数的集合
+ *
+ * @author rikka
+ * @exports
+ * @class CipherParams
+ * @implements {CipherParamsInterface}
+ */
 export class CipherParams implements CipherParamsInterface {
   ciphertext?: WordArray;
 

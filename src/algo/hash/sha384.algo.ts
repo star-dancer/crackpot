@@ -3,6 +3,14 @@ import { X64Word, X64WordArray } from "@/core/x64-word";
 
 import { SHA512Algo } from "./sha512.algo";
 
+/**
+ * SHA384算法
+ *
+ * @author rikka
+ * @exports
+ * @class SHA384Algo
+ * @augments {SHA512Algo}
+ */
 export class SHA384Algo extends SHA512Algo {
   reset(): void {
     super.reset();

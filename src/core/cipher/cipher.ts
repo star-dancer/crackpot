@@ -10,6 +10,15 @@ import { SerializableCipher } from "./serializable-cipher";
 
 type CipherStrategyArrow = (_key: string | WordArray) => CipherStrategy;
 
+/**
+ * 基础密码模板抽象类
+ *
+ * @author rikka
+ * @exports
+ * @abstract
+ * @class Cipher
+ * @augments {BufferedBlockAlgorithm}
+ */
 export abstract class Cipher extends BufferedBlockAlgorithm {
   public static keySize = 128 / 32;
   public static ivSize = 128 / 32;

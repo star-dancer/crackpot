@@ -3,6 +3,14 @@ import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algo
 
 import { WordArray } from "./word-array";
 
+/**
+ * BufferedBlock算法模板 抽象类
+ *
+ * @author rikka
+ * @exports
+ * @abstract
+ * @class BufferedBlockAlgorithm
+ */
 export abstract class BufferedBlockAlgorithm {
   public cfg: BufferedBlockAlgorithmConfig;
   public _data: WordArray;

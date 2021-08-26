@@ -7,6 +7,9 @@ import { WordArray } from "../word-array";
 import { Cipher } from "./cipher";
 import { CipherParams } from "./cipher-params";
 
+/**
+ * 密码包装器，将密码文本作为可序列化的密码参数对象返回
+ */
 export const SerializableCipher: CipherStrategy = {
   cfg: {
     iv: new WordArray([]),

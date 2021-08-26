@@ -91,6 +91,14 @@ for (let i = 0; i < 80; i += 1) {
   W[i] = {} as X64Word;
 }
 
+/**
+ * SHA512算法
+ *
+ * @author rikka
+ * @exports
+ * @class SHA512Algo
+ * @augments {Hasher}
+ */
 export class SHA512Algo extends Hasher {
   public _hash!: X64WordArray;
   constructor() {

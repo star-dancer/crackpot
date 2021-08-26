@@ -57,6 +57,14 @@ for (let i = 0; i < 25; i += 1) {
   T[i] = {} as X64Word;
 }
 
+/**
+ * SHA3算法
+ *
+ * @author rikka
+ * @exports
+ * @class SHA3Algo
+ * @augments {Hasher}
+ */
 export class SHA3Algo extends Hasher {
   private _state!: X64Word[];
 

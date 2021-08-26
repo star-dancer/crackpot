@@ -61,6 +61,14 @@ function II(
   return ((n << s) | (n >>> (32 - s))) + b;
 }
 
+/**
+ * MD5算法
+ *
+ * @author rikka
+ * @exports
+ * @class MD5Algo
+ * @augments {Hasher}
+ */
 export class MD5Algo extends Hasher {
   private _hash!: WordArray;
   // public constructor(cfg?: BufferedBlockAlgorithmConfig) {

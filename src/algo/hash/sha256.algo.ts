@@ -37,6 +37,14 @@ const K: number[] = [];
 
 const W: number[] = [];
 
+/**
+ * SHA256算法
+ *
+ * @author rikka
+ * @exports
+ * @class SHA256Algo
+ * @augments {Hasher}
+ */
 export class SHA256Algo extends Hasher {
   public _hash!: WordArray;
 

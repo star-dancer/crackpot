@@ -3,6 +3,14 @@ import { EvpKDFConfig } from "@/typings/kdf/evp-kdf.typing";
 
 import { MD5Algo } from "../hash/md5.algo";
 
+/**
+ * EvpKDF
+ * 这个密钥推导功能是为了符合EVP_BytesToKey
+ *
+ * @author rikka
+ * @exports
+ * @class EvpKDF
+ */
 export class EvpKDF {
   public cfg: EvpKDFConfig;
 

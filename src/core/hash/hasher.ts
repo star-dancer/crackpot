@@ -7,6 +7,15 @@ import { BufferedBlockAlgorithm } from "../buffered-block-algorithm";
 import { WordArray } from "../word-array";
 import { HmacHasher } from "./hmac-hasher";
 
+/**
+ * Hasher模板抽象类
+ *
+ * @author rikka
+ * @exports
+ * @abstract
+ * @class Hasher
+ * @augments {BufferedBlockAlgorithm}
+ */
 export abstract class Hasher extends BufferedBlockAlgorithm {
   public constructor(cfg?: BufferedBlockAlgorithmConfig) {
     super(cfg ? cfg : { blockSize: 512 / 32 });

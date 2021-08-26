@@ -6,6 +6,14 @@ import { WordArray } from "@/core/word-array";
 // Reusable object
 const W: Array<number> = [];
 
+/**
+ * SHA1算法
+ *
+ * @author rikka
+ * @exports
+ * @class SHA1Algo
+ * @augments {Hasher}
+ */
 export class SHA1Algo extends Hasher {
   private _hash!: WordArray;
 

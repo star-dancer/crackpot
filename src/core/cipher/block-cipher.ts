@@ -6,6 +6,15 @@ import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algo
 import { WordArray } from "../word-array";
 import { Cipher } from "./cipher";
 
+/**
+ * 基本块密码模板 抽象类
+ *
+ * @author rikka
+ * @exports
+ * @abstract
+ * @class BlockCipher
+ * @augments {Cipher}
+ */
 export abstract class BlockCipher extends Cipher {
   public _mode!: BlockCipherModeAlgorithm;
 
@@ -19,7 +28,7 @@ export abstract class BlockCipher extends Cipher {
       key,
       Object.assign(
         {
-          blockSize: 4,
+          blockSize: 128 / 32,
           mode: CBC,
           padding: PKCS7
         },
@@ -29,7 +38,7 @@ export abstract class BlockCipher extends Cipher {
   }
 
   public reset(): void {
-    super.reset();
+    super.reset.call(this);
     if (this.cfg.mode === undefined) {
       throw new Error("missing mode in config");
     }

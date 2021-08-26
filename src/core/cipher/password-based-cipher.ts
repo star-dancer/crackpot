@@ -9,6 +9,9 @@ import { Cipher } from "./cipher";
 import { CipherParams } from "./cipher-params";
 import { SerializableCipher } from "./serializable-cipher";
 
+/**
+ * 可序列化的密码包装器，从密码中导出密钥。并作为可序列化的密码参数对象返回密码文本
+ */
 export const PasswordBasedCipher: CipherStrategy = {
   cfg: {
     iv: new WordArray([]),

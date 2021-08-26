@@ -20,7 +20,9 @@ function parseLoop(
 
   return new WordArray(words, nBytes);
 }
-
+/**
+ * Base64编码策略
+ */
 export const Base64: Encoding & { _reverseMap?: number[]; _map: string } = {
   _reverseMap: undefined,
   _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",

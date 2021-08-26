@@ -1,5 +1,12 @@
 import { WordArray } from "./word-array";
 
+/**
+ *  一个由64位字组成的数组
+ *
+ * @author rikka
+ * @exports
+ * @class X64Word
+ */
 export class X64Word {
   public high!: number;
   public low!: number;

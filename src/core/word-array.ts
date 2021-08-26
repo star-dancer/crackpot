@@ -1,6 +1,13 @@
 import { Hex } from "@/enc/hex";
 import { Encoding } from "@/typings/core/encoding.typing";
 
+/**
+ * 一个由32位字组成的数组
+ *
+ * @author rikka
+ * @exports
+ * @class WordArray
+ */
 export class WordArray {
   public static random(nBytes: number): WordArray {
     const words = [];

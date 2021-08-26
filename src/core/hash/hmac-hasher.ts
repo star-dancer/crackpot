@@ -4,6 +4,13 @@ import { Type } from "@/typings/common.typing";
 import { WordArray } from "../word-array";
 import { Hasher } from "./hasher";
 
+/**
+ * hmac hash算法
+ *
+ * @author rikka
+ * @exports
+ * @class HmacHasher
+ */
 export class HmacHasher {
   private _hasher: Hasher;
 

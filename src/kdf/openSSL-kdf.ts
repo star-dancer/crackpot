@@ -3,6 +3,9 @@ import { CipherParams } from "@/core/cipher/cipher-params";
 import { WordArray } from "@/core/word-array";
 import { KDF } from "@/typings/kdf/kdf.typing";
 
+/**
+ * OpenSSL的密钥推导功能
+ */
 export const OpenSSLKdf: KDF = {
   execute(
     password: string,

@@ -2,6 +2,14 @@ import { WordArray } from "@/core/word-array";
 
 import { SHA256Algo } from "./sha256.algo";
 
+/**
+ * SHA224算法
+ *
+ * @author rikka
+ * @exports
+ * @class SHA224Algo
+ * @augments {SHA256Algo}
+ */
 export class SHA224Algo extends SHA256Algo {
   reset(): void {
     super.reset();
