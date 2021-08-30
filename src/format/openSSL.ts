@@ -3,13 +3,12 @@
 import { CipherParams } from "@/core/cipher/cipher-params";
 import { WordArray } from "@/core/word-array";
 import { Base64 } from "@/enc/base64";
-import { Formatter } from "@/typings/format/format.typing";
 
 /**
  * OpenSSL 格式化策略
  */
-export class OpenSSL {
-  public static stringify(cipherParams: CipherParams): string {
+export const OpenSSL = {
+  stringify(cipherParams: CipherParams): string {
     if (!cipherParams.ciphertext) {
       throw new Error("missing ciphertext in params");
     }
@@ -28,8 +27,8 @@ export class OpenSSL {
     }
 
     return wordArray.toString(Base64);
-  }
-  public static parse(openSSlStr: string): CipherParams {
+  },
+  parse(openSSlStr: string): CipherParams {
     const ciphertext = Base64.parse(openSSlStr);
 
     let salt: WordArray | undefined;
@@ -43,6 +42,4 @@ export class OpenSSL {
     }
     return new CipherParams({ ciphertext, salt });
   }
-}
-// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-const _: Formatter = OpenSSL;
+};
