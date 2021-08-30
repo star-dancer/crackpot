@@ -48,7 +48,7 @@ export class HmacHasher {
     this.reset();
   }
 
-  private reset() {
+  public reset(): void {
     const hasher = this._hasher;
     hasher.reset();
     hasher.update(this._iKey);

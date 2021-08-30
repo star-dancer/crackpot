@@ -10,6 +10,8 @@ import { SHA512Algo } from "@/algo/hash/sha512.algo";
 import { BlockCipher } from "@/core/cipher/block-cipher";
 import { Hasher } from "@/core/hash/hasher";
 
+import { PBKDF2 } from "./algo/hash/pbkdf2.algo";
+
 const MD5 = Hasher._createHelper(MD5Algo);
 const HmacMD5 = Hasher._createHmacHelper(MD5Algo);
 const SHA1 = Hasher._createHelper(SHA1Algo);
@@ -40,6 +42,7 @@ export {
   HmacSHA384,
   HmacSHA512,
   MD5,
+  PBKDF2,
   RIPEMD160,
   SHA1,
   SHA3,
