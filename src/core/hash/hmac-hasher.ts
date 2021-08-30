@@ -1,8 +1,16 @@
-import { Utf8 } from "../enc/utf8";
-import { Type } from "../typings/common.typing";
-import { Hasher } from "./hasher";
-import { WordArray } from "./word-array";
+import { Utf8 } from "@/enc/utf8";
+import { Type } from "@/typings/common.typing";
 
+import { WordArray } from "../word-array";
+import { Hasher } from "./hasher";
+
+/**
+ * hmac hash算法
+ *
+ * @author rikka
+ * @exports
+ * @class HmacHasher
+ */
 export class HmacHasher {
   private _hasher: Hasher;
 
@@ -15,7 +23,7 @@ export class HmacHasher {
       key = Utf8.parse(key);
     }
 
-    const hasherBlockSize = hasher_t.cfg.blockSize;
+    const hasherBlockSize: number = hasher_t.cfg.blockSize as number;
     const hasherBlockSizeBytes = hasherBlockSize * 4;
 
     if (key.sigBytes > hasherBlockSizeBytes) {

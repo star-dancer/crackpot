@@ -1,13 +1,22 @@
-import { Utf8 } from "../enc/utf8";
-import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
+import { Utf8 } from "@/enc/utf8";
+import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
+
 import { WordArray } from "./word-array";
 
+/**
+ * BufferedBlock算法模板 抽象类
+ *
+ * @author rikka
+ * @exports
+ * @abstract
+ * @class BufferedBlockAlgorithm
+ */
 export abstract class BufferedBlockAlgorithm {
   public cfg: BufferedBlockAlgorithmConfig;
   public _data: WordArray;
 
   public _nDataBytes: number;
-  private _minBufferSize: number = 0;
+  public _minBufferSize: number = 0;
 
   constructor(cfg?: BufferedBlockAlgorithmConfig) {
     this._data = new WordArray();
