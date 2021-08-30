@@ -1,7 +1,6 @@
 import { OpenSSL } from "@/format/openSSL";
 import { OpenSSLKdf } from "@/kdf/openSSL-kdf";
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
-import { CipherStrategy } from "@/typings/core/cipher-strategy.typing";
 import { Formatter } from "@/typings/format/format.typing";
 
 import { WordArray } from "../word-array";
@@ -12,14 +11,13 @@ import { SerializableCipher } from "./serializable-cipher";
 /**
  * 可序列化的密码包装器，从密码中导出密钥。并作为可序列化的密码参数对象返回密码文本
  */
-export const PasswordBasedCipher: CipherStrategy = {
-  cfg: {
+export class PasswordBasedCipher {
+  public static cfg = {
     iv: new WordArray([]),
     format: OpenSSL,
     kdf: OpenSSLKdf
-  } as BufferedBlockAlgorithmConfig,
-
-  encrypt(
+  } as BufferedBlockAlgorithmConfig;
+  public static encrypt(
     cipher: typeof Cipher,
     message: WordArray | string,
     passwrod: string,
@@ -52,8 +50,9 @@ export const PasswordBasedCipher: CipherStrategy = {
       config
     );
     return ciphertext.extend(derivedParams);
-  },
-  decrypt(
+  }
+
+  public static decrypt(
     cipher: typeof Cipher,
     ciphertext: CipherParams | string,
     password: string,
@@ -92,10 +91,14 @@ export const PasswordBasedCipher: CipherStrategy = {
       config
     );
     return plaintext;
-  },
-  _parse(ciphertext: CipherParams | string, format: Formatter): CipherParams {
+  }
+
+  public static _parse(
+    ciphertext: CipherParams | string,
+    format: Formatter
+  ): CipherParams {
     return typeof ciphertext === "string"
       ? format.parse(ciphertext)
       : ciphertext;
   }
-};
+}

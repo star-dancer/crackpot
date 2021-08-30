@@ -1,17 +1,19 @@
-import { Base64 } from "@/enc/base64";
 import { Utf8 } from "@/enc/utf8";
 
 import { AES } from "../../src";
 import { TestConstant } from "../constant/test.constant";
-const config = {
-  iv: Base64.parse("12345678123456789090")
-};
-const test = AES.encrypt(TestConstant.TEST_STR, TestConstant.TEST_KEY, config);
+
+const test = AES.encrypt(TestConstant.TEST_STR, TestConstant.TEST_KEY);
 
 const result = test.toString();
-console.log(result);
+const trueResult = "U2FsdGVkX1/BeR8fTgk/JzpYzx1WBsER6unm1KM2sg4=";
 
-const ending = AES.decrypt(result, TestConstant.TEST_KEY, config).toString(
+console.log("result", result);
+console.log("truelt", trueResult);
+
+const ending = AES.decrypt(result, TestConstant.TEST_KEY).toString(Utf8);
+const trueEnding = AES.decrypt(trueResult, TestConstant.TEST_KEY).toString(
   Utf8
 );
-console.log(ending);
+console.log("ending", ending);
+console.log("truend", trueEnding);

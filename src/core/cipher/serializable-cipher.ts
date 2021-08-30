@@ -1,6 +1,5 @@
 import { OpenSSL } from "@/format/openSSL";
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
-import { CipherStrategy } from "@/typings/core/cipher-strategy.typing";
 import { Formatter } from "@/typings/format/format.typing";
 
 import { WordArray } from "../word-array";
@@ -10,13 +9,12 @@ import { CipherParams } from "./cipher-params";
 /**
  * 密码包装器，将密码文本作为可序列化的密码参数对象返回
  */
-export const SerializableCipher: CipherStrategy = {
-  cfg: {
+export class SerializableCipher {
+  public static cfg = {
     iv: new WordArray([]),
     format: OpenSSL
-  } as BufferedBlockAlgorithmConfig,
-
-  encrypt(
+  } as BufferedBlockAlgorithmConfig;
+  static encrypt(
     cipher: typeof Cipher,
     message: WordArray | string,
     key: WordArray,
@@ -36,9 +34,9 @@ export const SerializableCipher: CipherStrategy = {
       blockSize: encryptor.cfg.blockSize,
       formatter: config.format
     });
-  },
+  }
 
-  decrypt(
+  static decrypt(
     cipher: typeof Cipher,
     ciphertext: CipherParams | string,
     key: WordArray,
@@ -60,10 +58,14 @@ export const SerializableCipher: CipherStrategy = {
       .finalize(ciphertext.ciphertext);
 
     return plaintext;
-  },
-  _parse(ciphertext: CipherParams | string, format: Formatter): CipherParams {
+  }
+
+  static _parse(
+    ciphertext: CipherParams | string,
+    format: Formatter
+  ): CipherParams {
     return typeof ciphertext === "string"
       ? format.parse(ciphertext)
       : ciphertext;
   }
-};
+}

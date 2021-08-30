@@ -8,8 +8,8 @@ import { Formatter } from "@/typings/format/format.typing";
 /**
  * OpenSSL 格式化策略
  */
-export const OpenSSL: Formatter = {
-  stringify(cipherParams: CipherParams): string {
+export class OpenSSL {
+  public static stringify(cipherParams: CipherParams): string {
     if (!cipherParams.ciphertext) {
       throw new Error("missing ciphertext in params");
     }
@@ -28,8 +28,8 @@ export const OpenSSL: Formatter = {
     }
 
     return wordArray.toString(Base64);
-  },
-  parse(openSSlStr: string): CipherParams {
+  }
+  public static parse(openSSlStr: string): CipherParams {
     const ciphertext = Base64.parse(openSSlStr);
 
     let salt: WordArray | undefined;
@@ -43,4 +43,6 @@ export const OpenSSL: Formatter = {
     }
     return new CipherParams({ ciphertext, salt });
   }
-};
+}
+// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
+const _: Formatter = OpenSSL;

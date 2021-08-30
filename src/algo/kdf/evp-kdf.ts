@@ -36,7 +36,7 @@ export class EvpKDF {
       }
       block = hasher.update(password).finalize(salt);
       hasher.reset();
-      for (let i = 0; i < this.cfg.iterations; i++) {
+      for (let i = 1; i < this.cfg.iterations; i++) {
         block = hasher.finalize(block);
         hasher.reset();
       }
