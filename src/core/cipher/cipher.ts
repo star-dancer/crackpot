@@ -53,11 +53,6 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     this.reset();
   }
 
-  reset(): void {
-    super.reset.call(this);
-    this._doReset();
-  }
-
   public process(dataUpdate: WordArray | string): WordArray {
     this._append(dataUpdate);
     return this._process();
@@ -69,7 +64,6 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     const finalProcessedData = this._doFinalize();
     return finalProcessedData;
   }
-  public abstract _doReset(): void;
 
   public static _createHelper(cipher: typeof Cipher): CipherHelper {
     return {
