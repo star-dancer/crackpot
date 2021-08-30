@@ -13,6 +13,7 @@ import { SerializableCipher } from "./serializable-cipher";
  */
 export class PasswordBasedCipher {
   public static cfg = {
+    blockSize: 4,
     iv: new WordArray([]),
     format: OpenSSL,
     kdf: OpenSSLKdf
@@ -20,35 +21,44 @@ export class PasswordBasedCipher {
   public static encrypt(
     cipher: typeof Cipher,
     message: WordArray | string,
-    passwrod: string,
+    password: string,
     cfg?: BufferedBlockAlgorithmConfig
   ): CipherParams {
-    const config: BufferedBlockAlgorithmConfig = Object.assign(
-      {},
-      this.cfg,
-      cfg
-    );
+    // Apply config defaults
+    const config = Object.assign({}, this.cfg, cfg);
+
+    // Check if we have a kdf
     if (config.kdf === undefined) {
       throw new Error("missing kdf in config");
     }
 
+    // Derive key and other params
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const derivedParams: CipherParams = config.kdf.execute(
-      passwrod,
+      password,
       cipher.keySize,
       cipher.ivSize
     );
 
-    if (derivedParams.iv === undefined) {
+    // Check if we have an IV
+    if (derivedParams.iv !== undefined) {
+      // Add IV to config
       config.iv = derivedParams.iv;
     }
 
+    // Encrypt
     const ciphertext: CipherParams = SerializableCipher.encrypt.call(
       this,
       cipher,
       message,
-      derivedParams.key as WordArray,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //   @ts-ignore
+      derivedParams.key,
       config
     );
+
+    // Mix in derived params
     return ciphertext.extend(derivedParams);
   }
 
@@ -58,38 +68,47 @@ export class PasswordBasedCipher {
     password: string,
     cfg?: BufferedBlockAlgorithmConfig
   ): WordArray {
-    const config: BufferedBlockAlgorithmConfig = Object.assign(
-      {},
-      this.cfg,
-      cfg
-    );
+    // Apply config defaults
+    const config = Object.assign({}, this.cfg, cfg);
+
+    // Check if we have a kdf
     if (config.format === undefined) {
-      throw new Error("missing format is config");
+      throw new Error("missing format in config");
     }
 
+    // Convert string to CipherParams
     ciphertext = this._parse(ciphertext, config.format);
 
+    // Check if we have a kdf
     if (config.kdf === undefined) {
       throw new Error("the key derivation function must be set");
     }
 
+    // Derive key and other params
     const derivedParams = config.kdf.execute(
       password,
       cipher.keySize,
       cipher.ivSize,
       ciphertext.salt
     );
-    if (derivedParams.iv === undefined) {
+
+    // Check if we have an IV
+    if (derivedParams.iv !== undefined) {
+      // Add IV to config
       config.iv = derivedParams.iv;
     }
 
+    // Decrypt
     const plaintext = SerializableCipher.decrypt.call(
       this,
       cipher,
       ciphertext,
-      derivedParams.key as WordArray,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //   @ts-ignore
+      derivedParams.key,
       config
     );
+
     return plaintext;
   }
 
