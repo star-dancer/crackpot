@@ -38,7 +38,7 @@ export abstract class BlockCipher extends Cipher {
   }
 
   public reset(): void {
-    super.reset.call(this);
+    super.reset();
     if (this.cfg.mode === undefined) {
       throw new Error("missing mode in config");
     }

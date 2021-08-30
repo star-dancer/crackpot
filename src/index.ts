@@ -3,6 +3,7 @@ import { SHA1Algo } from "@/algo/hash/sha1.algo";
 import { SHA3Algo } from "@/algo/hash/sha3.algo";
 import { Hasher } from "@/core/hash/hasher";
 
+import { AEStest } from "./algo/crypto/AES";
 import { AESAlgo } from "./algo/crypto/aes.algo";
 import { RIPEMD160Algo } from "./algo/hash/ripemd160.algo";
 import { SHA224Algo } from "./algo/hash/sha224.algo";
@@ -28,7 +29,7 @@ const HmacSHA512 = Hasher._createHmacHelper(SHA512Algo);
 const RIPEMD160 = Hasher._createHelper(RIPEMD160Algo);
 const HmacRIPEMD160 = Hasher._createHmacHelper(RIPEMD160Algo);
 
-const AES = BlockCipher._createHelper(AESAlgo);
+const AES = BlockCipher._createHelper(AEStest);
 
 export {
   AES,

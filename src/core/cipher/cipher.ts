@@ -37,7 +37,6 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     return new thisClass(this._DEC_XFORM_MODE, key, cfg);
   }
 
-  public cfg: BufferedBlockAlgorithmConfig;
   public _xformMode: number;
   public _key: WordArray;
   public static _ENC_XFORM_MODE = 1;
@@ -47,8 +46,7 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     key: WordArray,
     cfg: BufferedBlockAlgorithmConfig
   ) {
-    super();
-    this.cfg = cfg;
+    super(Object.assign({ blockSize: 1 }, cfg));
     this._xformMode = xformMode;
     this._key = key;
 

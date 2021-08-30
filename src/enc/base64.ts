@@ -31,7 +31,7 @@ export const Base64: Encoding & { _reverseMap?: number[]; _map: string } = {
     let base64StrLength = base64Str.length;
     const map = this._map;
     let reverseMap = this._reverseMap;
-    if (!reverseMap) {
+    if (reverseMap === undefined) {
       reverseMap = [];
       for (let j = 0; j < map.length; j++) {
         reverseMap[map.charCodeAt(j)] = j;
