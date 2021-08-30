@@ -6,7 +6,7 @@ import { KDF } from "../kdf/kdf.typing";
 import { Padding } from "../padding.typing";
 
 export interface BufferedBlockAlgorithmConfig {
-  blockSize: number;
+  blockSize?: number;
   iv?: WordArray;
 
   outputLength?: number;

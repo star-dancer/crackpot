@@ -23,7 +23,7 @@ export class HmacHasher {
       key = Utf8.parse(key);
     }
 
-    const hasherBlockSize = hasher_t.cfg.blockSize;
+    const hasherBlockSize: number = hasher_t.cfg.blockSize as number;
     const hasherBlockSizeBytes = hasherBlockSize * 4;
 
     if (key.sigBytes > hasherBlockSizeBytes) {

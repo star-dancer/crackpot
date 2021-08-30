@@ -86,7 +86,7 @@ export class SHA3Algo extends Hasher {
     const data = this._data;
     const dataWords = data.words;
     const nBitsLeft = data.sigBytes * 8;
-    const blockSizeBits = this.cfg.blockSize * 32;
+    const blockSizeBits = (this.cfg.blockSize as number) * 32;
 
     dataWords[nBitsLeft >>> 5] |= 0x1 << (24 - (nBitsLeft % 32));
     dataWords[
@@ -123,7 +123,7 @@ export class SHA3Algo extends Hasher {
   }
   _doProcessBlock(M: number[], offset: number): void {
     const state: X64Word[] = this._state;
-    const nBlockSizeLanes = this.cfg.blockSize / 2;
+    const nBlockSizeLanes = (this.cfg.blockSize as number) / 2;
     for (let i = 0; i < nBlockSizeLanes; i++) {
       // Shortcuts
       let M2i = M[offset + 2 * i];
