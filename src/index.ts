@@ -10,6 +10,7 @@ import { SHA512Algo } from "@/algo/hash/sha512.algo";
 import { BlockCipher } from "@/core/cipher/block-cipher";
 import { Hasher } from "@/core/hash/hasher";
 
+import { DESAlgo } from "./algo/crypto/tripledes.algo";
 import { PBKDF2 } from "./algo/hash/pbkdf2.algo";
 
 const MD5 = Hasher._createHelper(MD5Algo);
@@ -30,9 +31,11 @@ const RIPEMD160 = Hasher._createHelper(RIPEMD160Algo);
 const HmacRIPEMD160 = Hasher._createHmacHelper(RIPEMD160Algo);
 
 const AES = BlockCipher._createHelper(AESAlgo);
+const DES = BlockCipher._createHelper(DESAlgo);
 
 export {
   AES,
+  DES,
   HmacMD5,
   HmacRIPEMD160,
   HmacSHA1,
