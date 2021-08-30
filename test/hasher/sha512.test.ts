@@ -1,5 +1,5 @@
-import { SHA512 } from "../src";
-import { TestConstant } from "./constant/test.constant";
+import { SHA512 } from "../../src";
+import { TestConstant } from "../constant/test.constant";
 
 const testMine = SHA512(TestConstant.TEST_STR).toString();
 

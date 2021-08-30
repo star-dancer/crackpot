@@ -1,5 +1,5 @@
-import { SHA256 } from "../src";
-import { TestConstant } from "./constant/test.constant";
+import { SHA256 } from "../../src";
+import { TestConstant } from "../constant/test.constant";
 
 const testMine = SHA256(TestConstant.TEST_STR).toString();
 

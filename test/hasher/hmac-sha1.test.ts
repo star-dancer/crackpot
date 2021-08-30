@@ -1,5 +1,5 @@
-import { HmacSHA1 } from "../src";
-import { TestConstant } from "./constant/test.constant";
+import { HmacSHA1 } from "../../src";
+import { TestConstant } from "../constant/test.constant";
 
 const testMine = HmacSHA1(
   TestConstant.TEST_STR,

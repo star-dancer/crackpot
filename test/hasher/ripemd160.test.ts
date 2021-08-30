@@ -1,5 +1,5 @@
-import { RIPEMD160 } from "../src";
-import { TestConstant } from "./constant/test.constant";
+import { RIPEMD160 } from "../../src";
+import { TestConstant } from "../constant/test.constant";
 
 const testMine = RIPEMD160(TestConstant.TEST_STR).toString();
 

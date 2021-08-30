@@ -1,5 +1,5 @@
-import { HmacMD5 } from "../src";
-import { TestConstant } from "./constant/test.constant";
+import { HmacMD5 } from "../../src";
+import { TestConstant } from "../constant/test.constant";
 
 const testMine = HmacMD5(
   TestConstant.TEST_STR,
