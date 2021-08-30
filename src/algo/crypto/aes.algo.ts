@@ -120,6 +120,10 @@ export class AESAlgo extends BlockCipher {
     _M[offset + 1] = _M[offset + 3];
     _M[offset + 3] = t;
   }
+  public reset(): void {
+    super.reset();
+    this._doReset();
+  }
   public _doReset(): void {
     let t: number;
     if (this._nRounds && this._keyPriorReset === this._key) {
