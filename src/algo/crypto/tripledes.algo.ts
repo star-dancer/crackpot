@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { BlockCipher } from "@/core/cipher/block-cipher";
 import { WordArray } from "@/core/word-array";
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
@@ -684,5 +686,65 @@ export class DESAlgo extends BlockCipher {
     // Set output
     M[offset] = this._lBlock;
     M[offset + 1] = this._rBlock;
+  }
+}
+
+export class TripleDESAlgo extends BlockCipher {
+  public static keySize = 192 / 32;
+  public static ivSize = 64 / 32;
+  private _des1!: BlockCipher;
+  private _des2!: BlockCipher;
+  private _des3!: BlockCipher;
+
+  constructor(
+    xformMode: number,
+    key: WordArray,
+    cfg?: BufferedBlockAlgorithmConfig
+  ) {
+    super(xformMode, key, Object.assign({ blockSize: 64 / 32 }, cfg));
+  }
+  public encryptBlock(M: number[], offset: number): void {
+    this._des1.encryptBlock(M, offset);
+    this._des2.decryptBlock(M, offset);
+    this._des3.encryptBlock(M, offset);
+  }
+  public decryptBlock(M: number[], offset: number): void {
+    this._des3.decryptBlock(M, offset);
+    this._des2.encryptBlock(M, offset);
+    this._des1.decryptBlock(M, offset);
+  }
+
+  reset(): void {
+    super.reset();
+
+    const key = this._key;
+    const keyWords = key.words;
+    // Make sure the key length is valid (64, 128 or >= 192 bit)
+    if (keyWords.length !== 2 && keyWords.length !== 4 && keyWords.length < 6) {
+      throw new Error(
+        "Invalid key length - 3DES requires the key length to be 64, 128, 192 or >192."
+      );
+    }
+
+    // Extend the key according to the keying options defined in 3DES standard
+    const key1 = keyWords.slice(0, 2);
+    const key2 =
+      keyWords.length < 4 ? keyWords.slice(0, 2) : keyWords.slice(2, 4);
+    const key3 =
+      keyWords.length < 6 ? keyWords.slice(0, 2) : keyWords.slice(4, 6);
+
+    // Create DES instances
+    this._des1 = DESAlgo.createEncryptor(
+      new WordArray(key1),
+      {}
+    ) as BlockCipher;
+    this._des2 = DESAlgo.createEncryptor(
+      new WordArray(key2),
+      {}
+    ) as BlockCipher;
+    this._des3 = DESAlgo.createEncryptor(
+      new WordArray(key3),
+      {}
+    ) as BlockCipher;
   }
 }
