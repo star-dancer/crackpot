@@ -13,6 +13,7 @@ import { BlockCipher } from "@/core/cipher/block-cipher";
 import { Hasher } from "@/core/hash/hasher";
 
 import { RabbitAlgo } from "./algo/crypto/rabbit.algo";
+import { RabbitLegacyAlgo } from "./algo/crypto/rabbit-legacy.algo";
 import { RC4Algo, RC4DropAlgo } from "./algo/crypto/rc4.algo";
 import { StreamCipher } from "./core/cipher/stream-cipher";
 
@@ -39,6 +40,7 @@ const TripleDES = BlockCipher._createHelper(TripleDESAlgo);
 const RC4 = StreamCipher._createHelper(RC4Algo);
 const RC4Drop = StreamCipher._createHelper(RC4DropAlgo);
 const Rabbit = StreamCipher._createHelper(RabbitAlgo);
+const RabbitLegacy = StreamCipher._createHelper(RabbitLegacyAlgo);
 
 export {
   AES,
@@ -54,6 +56,7 @@ export {
   MD5,
   PBKDF2,
   Rabbit,
+  RabbitLegacy,
   RC4,
   RC4Drop,
   RIPEMD160,
