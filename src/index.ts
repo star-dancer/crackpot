@@ -12,6 +12,9 @@ import { SHA512Algo } from "@/algo/hash/sha512.algo";
 import { BlockCipher } from "@/core/cipher/block-cipher";
 import { Hasher } from "@/core/hash/hasher";
 
+import { RC4Algo } from "./algo/crypto/rc4.algo";
+import { StreamCipher } from "./core/cipher/stream-cipher";
+
 const MD5 = Hasher._createHelper(MD5Algo);
 const HmacMD5 = Hasher._createHmacHelper(MD5Algo);
 const SHA1 = Hasher._createHelper(SHA1Algo);
@@ -32,6 +35,7 @@ const HmacRIPEMD160 = Hasher._createHmacHelper(RIPEMD160Algo);
 const AES = BlockCipher._createHelper(AESAlgo);
 const DES = BlockCipher._createHelper(DESAlgo);
 const TripleDES = BlockCipher._createHelper(TripleDESAlgo);
+const RC4 = StreamCipher._createHelper(RC4Algo);
 
 export {
   AES,
@@ -46,6 +50,7 @@ export {
   HmacSHA512,
   MD5,
   PBKDF2,
+  RC4,
   RIPEMD160,
   SHA1,
   SHA3,
