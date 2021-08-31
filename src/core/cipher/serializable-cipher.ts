@@ -11,6 +11,7 @@ import { CipherParams } from "./cipher-params";
  */
 export class SerializableCipher {
   public static cfg = {
+    blockSize: 4,
     iv: new WordArray([]),
     format: OpenSSL
   } as BufferedBlockAlgorithmConfig;
@@ -20,13 +21,17 @@ export class SerializableCipher {
     key: WordArray,
     cfg?: BufferedBlockAlgorithmConfig
   ): CipherParams {
+    // Apply config defaults
     const config = Object.assign({}, this.cfg, cfg);
 
+    // Encrypt
     const encryptor = cipher.createEncryptor(key, config);
     const ciphertext = encryptor.finalize(message);
+
+    // Create and return serializable cipher params
     return new CipherParams({
-      ciphertext,
-      key,
+      ciphertext: ciphertext,
+      key: key,
       iv: encryptor.cfg.iv,
       algorithm: cipher,
       mode: encryptor.cfg.mode,
@@ -42,17 +47,20 @@ export class SerializableCipher {
     key: WordArray,
     optionalCfg?: BufferedBlockAlgorithmConfig
   ): WordArray {
+    // Apply config defaults
     const cfg = Object.assign({}, this.cfg, optionalCfg);
     if (!cfg.format) {
-      throw new Error("could not datermine format");
+      throw new Error("could not determine format");
     }
 
+    // Convert string to CipherParams
     ciphertext = this._parse(ciphertext, cfg.format);
 
     if (!ciphertext.ciphertext) {
-      throw new Error("could not datermine ciphertext");
+      throw new Error("could not determine ciphertext");
     }
 
+    // Decrypt
     const plaintext = cipher
       .createDecryptor(key, cfg)
       .finalize(ciphertext.ciphertext);

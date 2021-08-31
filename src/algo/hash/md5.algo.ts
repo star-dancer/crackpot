@@ -71,9 +71,6 @@ function II(
  */
 export class MD5Algo extends Hasher {
   private _hash!: WordArray;
-  // public constructor(cfg?: BufferedBlockAlgorithmConfig) {
-  //   super(cfg ? cfg : { blockSize: 512 / 32 });
-  // }
 
   public reset(): void {
     super.reset();

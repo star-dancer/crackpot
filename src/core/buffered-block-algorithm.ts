@@ -21,11 +21,7 @@ export abstract class BufferedBlockAlgorithm {
   constructor(cfg?: BufferedBlockAlgorithmConfig) {
     this._data = new WordArray();
     this._nDataBytes = 0;
-    this.cfg = cfg
-      ? cfg
-      : {
-          blockSize: 1
-        };
+    this.cfg = Object.assign({ blockSize: 1 }, cfg);
   }
   reset(): void {
     this._data = new WordArray();
@@ -57,29 +53,37 @@ export abstract class BufferedBlockAlgorithm {
     if (!this.cfg.blockSize) {
       throw new Error("missing blockSize in config");
     }
-    let processedWords: number[] = [];
 
-    const data = this._data;
-    const dataWords = data.words;
-    const dataSigBytes = data.sigBytes;
-    const blockSize = this.cfg.blockSize;
-    const blockSizeBytes = blockSize * 4;
+    // Shortcuts
+    const blockSizeBytes = this.cfg.blockSize * 4;
 
-    let nBlockReady = dataSigBytes / blockSizeBytes;
-    nBlockReady = doFlush
-      ? Math.ceil(nBlockReady)
+    // Count blocks ready
+    let nBlocksReady = this._data.sigBytes / blockSizeBytes;
+    nBlocksReady = doFlush
+      ? Math.ceil(nBlocksReady)
       : // eslint-disable-next-line unicorn/prefer-math-trunc
-        Math.max((nBlockReady | 0) - this._minBufferSize, 0);
-    const nWordsReady = nBlockReady * blockSize;
-    const nBytesReady = Math.min(nWordsReady * 4, dataSigBytes);
+        Math.max((nBlocksReady | 0) - this._minBufferSize, 0);
+
+    // Count words ready
+    const nWordsReady = nBlocksReady * this.cfg.blockSize;
+
+    // Count bytes ready
+    const nBytesReady = Math.min(nWordsReady * 4, this._data.sigBytes);
+
+    // Process blocks
+    let processedWords;
     if (nWordsReady) {
-      for (let offset = 0; offset < nWordsReady; offset += blockSize) {
-        this._doProcessBlock(dataWords, offset);
+      for (let offset = 0; offset < nWordsReady; offset += this.cfg.blockSize) {
+        // Perform concrete-algorithm logic
+        this._doProcessBlock(this._data.words, offset);
       }
 
-      processedWords = dataWords.splice(0, nWordsReady);
-      data.sigBytes -= nBytesReady;
+      // Remove processed words
+      processedWords = this._data.words.splice(0, nWordsReady);
+      this._data.sigBytes -= nBytesReady;
     }
+
+    // Return processed words
     return new WordArray(processedWords, nBytesReady);
   }
 }

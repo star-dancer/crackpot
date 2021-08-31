@@ -73,8 +73,6 @@ export class AESAlgo extends BlockCipher {
 
   _nRounds!: number;
 
-  _key!: WordArray;
-
   _keyPriorReset!: WordArray;
 
   _keySchedule!: Array<number>;
@@ -120,7 +118,9 @@ export class AESAlgo extends BlockCipher {
     _M[offset + 1] = _M[offset + 3];
     _M[offset + 3] = t;
   }
-  public _doReset(): void {
+
+  public reset(): void {
+    super.reset();
     let t: number;
     if (this._nRounds && this._keyPriorReset === this._key) {
       return;

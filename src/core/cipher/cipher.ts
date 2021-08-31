@@ -44,18 +44,14 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
   constructor(
     xformMode: number,
     key: WordArray,
-    cfg: BufferedBlockAlgorithmConfig
+    cfg?: BufferedBlockAlgorithmConfig
   ) {
     super(Object.assign({ blockSize: 1 }, cfg));
+
     this._xformMode = xformMode;
     this._key = key;
 
     this.reset();
-  }
-
-  reset(): void {
-    super.reset.call(this);
-    this._doReset();
   }
 
   public process(dataUpdate: WordArray | string): WordArray {
@@ -69,33 +65,50 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     const finalProcessedData = this._doFinalize();
     return finalProcessedData;
   }
-  public abstract _doReset(): void;
 
   public static _createHelper(cipher: typeof Cipher): CipherHelper {
-    return {
-      encrypt(
-        message: WordArray | string,
-        key: WordArray | string,
-        cfg?: BufferedBlockAlgorithmConfig
-      ): CipherParams {
-        return typeof key === "string"
-          ? PasswordBasedCipher.encrypt(cipher, message, key, cfg)
-          : SerializableCipher.encrypt(cipher, message, key, cfg);
-      },
-      decrypt(
-        ciphertext: CipherParams | string,
-        key: WordArray | string,
-        cfg?: BufferedBlockAlgorithmConfig
-      ) {
-        return typeof key === "string"
-          ? PasswordBasedCipher.decrypt(cipher, ciphertext, key, cfg)
-          : SerializableCipher.decrypt(cipher, ciphertext, key, cfg);
-      }
-    };
-  }
+    /**
+     * encrypt
+     *
+     * @author rikka
+     * @param {(WordArray | string)} message message
+     * @param {(WordArray | string)} key key
+     * @param {BufferedBlockAlgorithmConfig} [cfg] cfg
+     * @returns {*}  {CipherParams}
+     */
+    function encrypt(
+      message: WordArray | string,
+      key: WordArray | string,
+      cfg?: BufferedBlockAlgorithmConfig
+    ): CipherParams {
+      return typeof key === "string"
+        ? PasswordBasedCipher.encrypt(cipher, message, key, cfg)
+        : SerializableCipher.encrypt(cipher, message, key, cfg);
+    }
 
-  _doProcessBlock(_wordArray: number[], _offset: number): void {
-    throw new Error("Method not implemented.");
+    /**
+     * decrypt
+     *
+     * @author rikka
+     * @param {(CipherParams | string)} ciphertext ciphertext
+     * @param {(WordArray | string)} key key
+     * @param {BufferedBlockAlgorithmConfig} [cfg] cfg
+     * @returns {*} {WordArray}
+     */
+    function decrypt(
+      ciphertext: CipherParams | string,
+      key: WordArray | string,
+      cfg?: BufferedBlockAlgorithmConfig
+    ): WordArray {
+      return typeof key === "string"
+        ? PasswordBasedCipher.decrypt(cipher, ciphertext, key, cfg)
+        : SerializableCipher.decrypt(cipher, ciphertext, key, cfg);
+    }
+
+    return {
+      encrypt: encrypt,
+      decrypt: decrypt
+    };
   }
 
   public abstract _doFinalize(): WordArray;
