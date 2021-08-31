@@ -15,8 +15,11 @@ import { Hasher } from "@/core/hash/hasher";
 import { RabbitAlgo } from "./algo/crypto/rabbit.algo";
 import { RabbitLegacyAlgo } from "./algo/crypto/rabbit-legacy.algo";
 import { RC4Algo, RC4DropAlgo } from "./algo/crypto/rc4.algo";
+import { MD4Algo } from "./algo/hash/md4.algo";
 import { StreamCipher } from "./core/cipher/stream-cipher";
 
+const MD4 = Hasher._createHelper(MD4Algo);
+const HmacMD4 = Hasher._createHmacHelper(MD4Algo);
 const MD5 = Hasher._createHelper(MD5Algo);
 const HmacMD5 = Hasher._createHmacHelper(MD5Algo);
 const SHA1 = Hasher._createHelper(SHA1Algo);
@@ -45,6 +48,7 @@ const RabbitLegacy = StreamCipher._createHelper(RabbitLegacyAlgo);
 export {
   AES,
   DES,
+  HmacMD4,
   HmacMD5,
   HmacRIPEMD160,
   HmacSHA1,
@@ -53,6 +57,7 @@ export {
   HmacSHA256,
   HmacSHA384,
   HmacSHA512,
+  MD4,
   MD5,
   PBKDF2,
   Rabbit,
