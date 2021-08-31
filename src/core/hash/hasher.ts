@@ -18,7 +18,7 @@ import { HmacHasher } from "./hmac-hasher";
  */
 export abstract class Hasher extends BufferedBlockAlgorithm {
   public constructor(cfg?: BufferedBlockAlgorithmConfig) {
-    super(cfg ? cfg : { blockSize: 512 / 32 });
+    super(Object.assign({ blockSize: 512 / 32 }, cfg));
     this.reset();
   }
   reset(): void {

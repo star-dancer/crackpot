@@ -9,7 +9,7 @@ export abstract class StreamCipher extends Cipher {
     key: WordArray,
     cfg?: BufferedBlockAlgorithmConfig
   ) {
-    super(xformMode, key, Object.assign(cfg, { blockSize: 1 }));
+    super(xformMode, key, Object.assign({ blockSize: 1 }, cfg));
   }
 
   public _doFinalize(): WordArray {

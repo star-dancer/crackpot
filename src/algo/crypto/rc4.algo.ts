@@ -1,4 +1,6 @@
 import { StreamCipher } from "@/core/cipher/stream-cipher";
+import { WordArray } from "@/core/word-array";
+import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 
 export class RC4Algo extends StreamCipher {
   public static keySize = 256 / 32;
@@ -7,7 +9,13 @@ export class RC4Algo extends StreamCipher {
   private _S: number[] = [];
   private _i!: number;
   private _j!: number;
-
+  constructor(
+    xformMode: number,
+    key: WordArray,
+    cfg?: BufferedBlockAlgorithmConfig
+  ) {
+    super(xformMode, key, Object.assign(cfg, { blockSize: 1 }));
+  }
   reset(): void {
     super.reset();
     const key = this._key;
@@ -43,13 +51,13 @@ export class RC4Algo extends StreamCipher {
   private generateKeystreamWord(): number {
     // Shortcuts
     const S = this._S;
-    let i = this._i;
+    const i = this._i;
     let j = this._j;
 
     // Generate keystream word
     let keystreamWord = 0;
     for (let n = 0; n < 4; n++) {
-      i = (i + 1) % 256;
+      this._i = (i + 1) % 256;
       j = (j + S[i]) % 256;
 
       // Swap

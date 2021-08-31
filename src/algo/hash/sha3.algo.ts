@@ -69,7 +69,7 @@ export class SHA3Algo extends Hasher {
   private _state!: X64Word[];
 
   constructor(cfg?: BufferedBlockAlgorithmConfig) {
-    super(cfg ? cfg : { blockSize: 512 / 32, outputLength: 512 });
+    super(Object.assign({ blockSize: 512 / 32, outputLength: 512 }, cfg));
     this.reset();
   }
 

@@ -49,7 +49,6 @@ export class SerializableCipher {
   ): WordArray {
     // Apply config defaults
     const cfg = Object.assign({}, this.cfg, optionalCfg);
-
     if (!cfg.format) {
       throw new Error("could not determine format");
     }

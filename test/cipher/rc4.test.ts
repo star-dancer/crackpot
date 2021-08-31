@@ -8,6 +8,6 @@ console.log(mineResult.toString());
 console.log(
   RC4.decrypt(mineResult.toString(), TestConstant.TEST_KEY).toString(Utf8)
 );
-const otherResult = "U2FsdGVkX1/kbdMozo9glxnlP5qIizN1hg==";
+const otherResult = "U2FsdGVkX1+SrFNcoS6NVrmIxnRgKw7bvShKDKQt1oEcsg==";
 
 console.log(RC4.decrypt(otherResult, TestConstant.TEST_KEY).toString(Utf8));
