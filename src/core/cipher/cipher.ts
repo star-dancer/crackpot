@@ -47,6 +47,7 @@ export abstract class Cipher extends BufferedBlockAlgorithm {
     cfg: BufferedBlockAlgorithmConfig
   ) {
     super(Object.assign({ blockSize: 1 }, cfg));
+
     this._xformMode = xformMode;
     this._key = key;
 

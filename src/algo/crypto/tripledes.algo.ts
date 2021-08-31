@@ -1,5 +1,8 @@
 import { BlockCipher } from "@/core/cipher/block-cipher";
+import { WordArray } from "@/core/word-array";
+import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 
+// Permuted Choice 1 constants
 const PC1 = [
   57, 49, 41, 33, 25, 17, 9, 1, 58, 50, 42, 34, 26, 18, 10, 2, 59, 51, 43, 35,
   27, 19, 11, 3, 60, 52, 44, 36, 63, 55, 47, 39, 31, 23, 15, 7, 62, 54, 46, 38,
@@ -554,52 +557,36 @@ const SBOX_MASK = [
   0x00_00_1f_80, 0x00_00_01_f8, 0x80_00_00_1f
 ];
 
-/**
- * exchangeLR
- *
- * @author rikka
- * @param {DESAlgo} this DESAlgo
- * @param {number} offset offset
- * @param {number} mask mask
- */
-function exchangeLR(this: DESAlgo, offset: number, mask: number) {
-  const t = ((this._lBlock >>> offset) ^ this._rBlock) & mask;
-  this._rBlock ^= t;
-  this._lBlock ^= t << offset;
-}
-
-/**
- * exchangeRL
- *
- * @author rikka
- * @param {DESAlgo} this DESAlgo
- * @param {number} offset offset
- * @param {number} mask mask
- */
-function exchangeRL(this: DESAlgo, offset: number, mask: number) {
-  const t = ((this._rBlock >>> offset) ^ this._lBlock) & mask;
-  this._lBlock ^= t;
-  this._rBlock ^= t << offset;
-}
 export class DESAlgo extends BlockCipher {
-  public keySize = 64 / 32;
-  public ivSize = 64 / 32;
-  public blockSize = 64 / 32;
+  public static keySize = 64 / 32;
+  public static ivSize = 64 / 32;
   private _subKeys!: number[][];
-
   private _invSubKeys!: number[][];
-
   public _lBlock!: number;
   public _rBlock!: number;
+  constructor(
+    xformMode: number,
+    key: WordArray,
+    cfg?: BufferedBlockAlgorithmConfig
+  ) {
+    super(xformMode, key, Object.assign({ blockSize: 64 / 32 }, cfg));
+  }
+  private exchangeRL(offset: number, mask: number): void {
+    const t = ((this._rBlock >>> offset) ^ this._lBlock) & mask;
+    this._lBlock ^= t;
+    this._rBlock ^= t << offset;
+  }
 
   public encryptBlock(M: number[], offset: number): void {
     this._doCryptBlock(M, offset, this._subKeys);
   }
+
   public decryptBlock(M: number[], offset: number): void {
     this._doCryptBlock(M, offset, this._invSubKeys);
   }
 
   reset(): void {
+    super.reset();
     const key = this._key;
     const keyWords = key.words;
 
@@ -648,6 +635,11 @@ export class DESAlgo extends BlockCipher {
       invSubKeys[i] = subKeys[15 - i];
     }
   }
+  private exchangeLR(offset: number, mask: number): void {
+    const t = ((this._lBlock >>> offset) ^ this._rBlock) & mask;
+    this._rBlock ^= t;
+    this._lBlock ^= t << offset;
+  }
 
   _doCryptBlock(M: number[], offset: number, subKeys: number[][]): void {
     // Get input
@@ -655,11 +647,11 @@ export class DESAlgo extends BlockCipher {
     this._rBlock = M[offset + 1];
 
     // Initial permutation
-    exchangeLR.call(this, 4, 0x0f_0f_0f_0f);
-    exchangeLR.call(this, 16, 0x00_00_ff_ff);
-    exchangeRL.call(this, 2, 0x33_33_33_33);
-    exchangeRL.call(this, 8, 0x00_ff_00_ff);
-    exchangeLR.call(this, 1, 0x55_55_55_55);
+    this.exchangeLR(4, 0x0f_0f_0f_0f);
+    this.exchangeLR(16, 0x00_00_ff_ff);
+    this.exchangeRL(2, 0x33_33_33_33);
+    this.exchangeRL(8, 0x00_ff_00_ff);
+    this.exchangeLR(1, 0x55_55_55_55);
 
     // Rounds
     for (let round = 0; round < 16; round++) {
@@ -683,11 +675,11 @@ export class DESAlgo extends BlockCipher {
     this._rBlock = t;
 
     // Final permutation
-    exchangeLR.call(this, 1, 0x55_55_55_55);
-    exchangeRL.call(this, 8, 0x00_ff_00_ff);
-    exchangeRL.call(this, 2, 0x33_33_33_33);
-    exchangeLR.call(this, 16, 0x00_00_ff_ff);
-    exchangeLR.call(this, 4, 0x0f_0f_0f_0f);
+    this.exchangeLR(1, 0x55_55_55_55);
+    this.exchangeRL(8, 0x00_ff_00_ff);
+    this.exchangeRL(2, 0x33_33_33_33);
+    this.exchangeLR(16, 0x00_00_ff_ff);
+    this.exchangeLR(4, 0x0f_0f_0f_0f);
 
     // Set output
     M[offset] = this._lBlock;

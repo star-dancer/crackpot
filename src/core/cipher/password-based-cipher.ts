@@ -13,7 +13,7 @@ import { SerializableCipher } from "./serializable-cipher";
  */
 export class PasswordBasedCipher {
   public static cfg = {
-    blockSize: 4,
+    // blockSize: 4,
     iv: new WordArray([]),
     format: OpenSSL,
     kdf: OpenSSLKdf
@@ -26,7 +26,6 @@ export class PasswordBasedCipher {
   ): CipherParams {
     // Apply config defaults
     const config = Object.assign({}, this.cfg, cfg);
-
     // Check if we have a kdf
     if (config.kdf === undefined) {
       throw new Error("missing kdf in config");

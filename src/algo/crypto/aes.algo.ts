@@ -73,8 +73,6 @@ export class AESAlgo extends BlockCipher {
 
   _nRounds!: number;
 
-  _key!: WordArray;
-
   _keyPriorReset!: WordArray;
 
   _keySchedule!: Array<number>;
