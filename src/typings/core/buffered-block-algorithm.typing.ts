@@ -26,4 +26,6 @@ export interface BufferedBlockAlgorithmConfig {
   keySize?: number;
 
   iterations?: number;
+
+  drop?: number;
 }

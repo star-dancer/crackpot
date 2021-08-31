@@ -48,7 +48,7 @@ export class RC4Algo extends StreamCipher {
     this._i = this._j;
   }
 
-  private generateKeystreamWord(): number {
+  public generateKeystreamWord(): number {
     // Shortcuts
     const S = this._S;
     const i = this._i;
@@ -77,5 +77,25 @@ export class RC4Algo extends StreamCipher {
 
   _doProcessBlock(M: number[], offset: number): void {
     M[offset] ^= this.generateKeystreamWord();
+  }
+}
+
+export class RC4DropAlgo extends RC4Algo {
+  constructor(
+    xformMode: number,
+    key: WordArray,
+    cfg?: BufferedBlockAlgorithmConfig
+  ) {
+    super(xformMode, key, Object.assign({ drop: 192 }, cfg));
+  }
+
+  reset(): void {
+    super.reset();
+    if (this.cfg.drop === undefined) {
+      throw new Error("drop is undefined");
+    }
+    for (let i = this.cfg.drop; i > 0; i--) {
+      this.generateKeystreamWord();
+    }
   }
 }
