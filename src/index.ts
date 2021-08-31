@@ -17,6 +17,7 @@ import { RabbitLegacyAlgo } from "./algo/crypto/rabbit-legacy.algo";
 import { RC4Algo, RC4DropAlgo } from "./algo/crypto/rc4.algo";
 import { MD4Algo } from "./algo/hash/md4.algo";
 import { RIPEMD128Algo } from "./algo/hash/ripemd128.algo";
+import { RIPEMD256Algo } from "./algo/hash/ripemd256.algo";
 import { StreamCipher } from "./core/cipher/stream-cipher";
 
 const MD4 = Hasher._createHelper(MD4Algo);
@@ -39,6 +40,8 @@ const RIPEMD160 = Hasher._createHelper(RIPEMD160Algo);
 const HmacRIPEMD160 = Hasher._createHmacHelper(RIPEMD160Algo);
 const RIPEMD128 = Hasher._createHelper(RIPEMD128Algo);
 const HmacRIPEMD128 = Hasher._createHmacHelper(RIPEMD128Algo);
+const RIPEMD256 = Hasher._createHelper(RIPEMD256Algo);
+const HmacRIPEMD256 = Hasher._createHmacHelper(RIPEMD256Algo);
 
 const AES = BlockCipher._createHelper(AESAlgo);
 const DES = BlockCipher._createHelper(DESAlgo);
@@ -55,6 +58,7 @@ export {
   HmacMD5,
   HmacRIPEMD128,
   HmacRIPEMD160,
+  HmacRIPEMD256,
   HmacSHA1,
   HmacSHA3,
   HmacSHA224,
@@ -70,6 +74,7 @@ export {
   RC4Drop,
   RIPEMD128,
   RIPEMD160,
+  RIPEMD256,
   SHA1,
   SHA3,
   SHA224,
