@@ -1,6 +1,6 @@
+import { CBC } from "@/mode";
 import { BlockCipherModeAlgorithm } from "@/mode/block-cipher-mode-algorithm";
-import { CBC } from "@/mode/CBC";
-import { PKCS7 } from "@/pad/pkcs7";
+import { PKCS7 } from "@/pad";
 import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 
 import { WordArray } from "../word-array";
