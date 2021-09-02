@@ -1,10 +1,13 @@
 {
   "name": "@star-dancer/crackpot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "@star-dancer crypto lib",
   "main": "./dist/index.js",
   "author": "rikka",
   "license": "MIT",
+  "scripts": {
+    "prepublish": "tsc --build --clean && tsc --build"
+  },
   "devDependencies": {
     "@star-dancer/watermelon": "^1.0.9",
     "@types/node": "14",
