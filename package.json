@@ -1,5 +1,5 @@
 {
-  "name": "crackpot",
+  "name": "@star-dancer/crackpot",
   "version": "1.0.0",
   "description": "@star-dancer crypto lib",
   "main": "./dist/index.js",
