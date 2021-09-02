@@ -1,8 +1,6 @@
-import { TestConstant } from "test/constant/test.constant";
-
-import { WordArray } from "@/core/word-array";
-import { Base64 } from "@/enc/base64";
-import { Utf8 } from "@/enc/utf8";
+import { WordArray } from "../../src/core/word-array";
+import { Base64, Utf8 } from "../../src/enc";
+import { TestConstant } from "../constant/test.constant";
 
 const utf8ed: WordArray = Utf8.parse(TestConstant.TEST_STR);
 const base64ed = Base64.stringify(utf8ed);

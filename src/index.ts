@@ -1,8 +1,16 @@
 import { AESAlgo } from "@/algo/crypto/aes.algo";
+import { RabbitAlgo } from "@/algo/crypto/rabbit.algo";
+import { RabbitLegacyAlgo } from "@/algo/crypto/rabbit-legacy.algo";
+import { RC4Algo, RC4DropAlgo } from "@/algo/crypto/rc4.algo";
+import { SEEDAlgo } from "@/algo/crypto/seed.algo";
 import { DESAlgo, TripleDESAlgo } from "@/algo/crypto/tripledes.algo";
+import { MD4Algo } from "@/algo/hash/md4.algo";
 import { MD5Algo } from "@/algo/hash/md5.algo";
 import { PBKDF2 } from "@/algo/hash/pbkdf2.algo";
+import { RIPEMD128Algo } from "@/algo/hash/ripemd128.algo";
 import { RIPEMD160Algo } from "@/algo/hash/ripemd160.algo";
+import { RIPEMD256Algo } from "@/algo/hash/ripemd256.algo";
+import { RIPEMD320Algo } from "@/algo/hash/ripemd320.algo";
 import { SHA1Algo } from "@/algo/hash/sha1.algo";
 import { SHA3Algo } from "@/algo/hash/sha3.algo";
 import { SHA224Algo } from "@/algo/hash/sha224.algo";
@@ -10,17 +18,8 @@ import { SHA256Algo } from "@/algo/hash/sha256.algo";
 import { SHA384Algo } from "@/algo/hash/sha384.algo";
 import { SHA512Algo } from "@/algo/hash/sha512.algo";
 import { BlockCipher } from "@/core/cipher/block-cipher";
+import { StreamCipher } from "@/core/cipher/stream-cipher";
 import { Hasher } from "@/core/hash/hasher";
-
-import { RabbitAlgo } from "./algo/crypto/rabbit.algo";
-import { RabbitLegacyAlgo } from "./algo/crypto/rabbit-legacy.algo";
-import { RC4Algo, RC4DropAlgo } from "./algo/crypto/rc4.algo";
-import { SEEDAlgo } from "./algo/crypto/seed.algo";
-import { MD4Algo } from "./algo/hash/md4.algo";
-import { RIPEMD128Algo } from "./algo/hash/ripemd128.algo";
-import { RIPEMD256Algo } from "./algo/hash/ripemd256.algo";
-import { RIPEMD320Algo } from "./algo/hash/ripemd320.algo";
-import { StreamCipher } from "./core/cipher/stream-cipher";
 
 const MD4 = Hasher._createHelper(MD4Algo);
 const HmacMD4 = Hasher._createHmacHelper(MD4Algo);

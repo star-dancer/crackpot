@@ -1,7 +1,5 @@
-import { TestConstant } from "test/constant/test.constant";
-
-import { Utf8 } from "@/enc/utf8";
-import { RC4Drop } from "@/index";
+import { enc, RC4Drop } from "../../lib/index.cjs";
+import { TestConstant } from "../constant/test.constant";
 
 const mineResult = RC4Drop.encrypt(
   TestConstant.TEST_STR,
@@ -9,5 +7,7 @@ const mineResult = RC4Drop.encrypt(
 );
 console.log(mineResult.toString());
 console.log(
-  RC4Drop.decrypt(mineResult.toString(), TestConstant.TEST_KEY).toString(Utf8)
+  RC4Drop.decrypt(mineResult.toString(), TestConstant.TEST_KEY).toString(
+    enc.Utf8
+  )
 );
