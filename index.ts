@@ -33,7 +33,7 @@ export {
   SHA512,
   TripleDES
 } from "./src";
-export * as enc from "./src/enc";
-export * as format from "./src/format";
-export * as mode from "./src/mode";
-export * as pad from "./src/pad";
+export { enc } from "./src/enc";
+export { format } from "./src/format";
+export { mode } from "./src/mode";
+export { pad } from "./src/pad";
