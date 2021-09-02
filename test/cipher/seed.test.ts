@@ -1,6 +1,6 @@
 import { enc, SEED } from "../../lib";
 import { TestConstant } from "../constant/test.constant";
-
+console.log(enc);
 const mineResult = SEED.encrypt(TestConstant.TEST_STR, TestConstant.TEST_KEY);
 console.log(mineResult.toString());
 console.log(
