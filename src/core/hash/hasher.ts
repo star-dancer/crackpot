@@ -1,14 +1,24 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc,jsdoc/require-jsdoc */
-import { Type } from "../typings/common.typing";
-import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
-import { BufferedBlockAlgorithm } from "./buffered-block-algorithm";
-import { HmacHasher } from "./hmac-hasher";
-import { WordArray } from "./word-array";
+import { Type } from "@/typings/common.typing";
+import { BufferedBlockAlgorithmConfig } from "@/typings/core/buffered-block-algorithm.typing";
 
+import { BufferedBlockAlgorithm } from "../buffered-block-algorithm";
+import { WordArray } from "../word-array";
+import { HmacHasher } from "./hmac-hasher";
+
+/**
+ * Hasher模板抽象类
+ *
+ * @author rikka
+ * @exports
+ * @abstract
+ * @class Hasher
+ * @augments {BufferedBlockAlgorithm}
+ */
 export abstract class Hasher extends BufferedBlockAlgorithm {
   public constructor(cfg?: BufferedBlockAlgorithmConfig) {
-    super(cfg ? cfg : { blockSize: 512 / 32 });
+    super(Object.assign({ blockSize: 512 / 32 }, cfg));
     this.reset();
   }
   reset(): void {

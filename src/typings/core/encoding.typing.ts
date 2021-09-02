@@ -1,4 +1,4 @@
-import { WordArray } from "../../core/word-array";
+import { WordArray } from "@/core/word-array";
 
 export interface Encoding {
   stringify: (_wordArray: WordArray) => string;

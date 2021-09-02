@@ -1,7 +1,11 @@
-import { WordArray } from "../core/word-array";
-import { Encoding } from "../typings/core/encoding.typing";
+import { WordArray } from "@/core/word-array";
+import { Encoding } from "@/typings/core/encoding.typing";
+
 import { Latin1 } from "./latin1";
 
+/**
+ * UTF-8编码策略
+ */
 export const Utf8: Encoding = {
   stringify(wordArray: WordArray) {
     try {

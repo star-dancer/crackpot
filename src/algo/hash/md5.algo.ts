@@ -1,8 +1,7 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable unicorn/prefer-math-trunc,jsdoc/require-jsdoc */
-import { Hasher } from "../core/hasher";
-import { WordArray } from "../core/word-array";
-// import { BufferedBlockAlgorithmConfig } from "../typings/core/buffered-block-algorithm.typing";
+import { Hasher } from "@/core/hash/hasher";
+import { WordArray } from "@/core/word-array";
 // Constants table
 const T: number[] = [];
 
@@ -62,11 +61,16 @@ function II(
   return ((n << s) | (n >>> (32 - s))) + b;
 }
 
+/**
+ * MD5算法
+ *
+ * @author rikka
+ * @exports
+ * @class MD5Algo
+ * @augments {Hasher}
+ */
 export class MD5Algo extends Hasher {
   private _hash!: WordArray;
-  // public constructor(cfg?: BufferedBlockAlgorithmConfig) {
-  //   super(cfg ? cfg : { blockSize: 512 / 32 });
-  // }
 
   public reset(): void {
     super.reset();
@@ -218,7 +222,3 @@ export class MD5Algo extends Hasher {
     return hash;
   }
 }
-
-export const MD5 = Hasher._createHelper(MD5Algo);
-
-export const HmacMD5 = Hasher._createHmacHelper(MD5Algo);

@@ -17,8 +17,17 @@
                 "${workspaceFolder}/**",
                 "!**/node_modules/**"
             ],
-            "env": {},
-            "console": "internalConsole"
+            "env": {
+                "TS_NODE_PROJECT": "tsconfig.json",
+                "TS_NODE_TRANSPILE_ONLY": "true"
+            },
+            "console": "internalConsole",
+            "runtimeArgs": [
+                "-r",
+                "ts-node/register",
+                "-r",
+                "tsconfig-paths/register"
+            ]
         }
     ]
 }

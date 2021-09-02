@@ -1,6 +1,9 @@
-import { WordArray } from "../core/word-array";
-import { Encoding } from "../typings/core/encoding.typing";
+import { WordArray } from "@/core/word-array";
+import { Encoding } from "@/typings/core/encoding.typing";
 
+/**
+ * Hex编码策略
+ */
 export const Hex: Encoding = {
   stringify(wordArray: WordArray): string {
     const { words, sigBytes } = wordArray;

@@ -1,6 +1,9 @@
-import { WordArray } from "../core/word-array";
-import { Encoding } from "../typings/core/encoding.typing";
+import { WordArray } from "@/core/word-array";
+import { Encoding } from "@/typings/core/encoding.typing";
 
+/**
+ * Latin1编码策略
+ */
 export const Latin1: Encoding = {
   stringify(wordArray: WordArray) {
     const { words, sigBytes } = wordArray;
