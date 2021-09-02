@@ -2,7 +2,7 @@ import typescript from '@rollup/plugin-typescript';
 import {typescriptPaths} from "rollup-plugin-typescript-paths";
 
 export default {
-  input: 'src/index.ts', // 源文件入口
+  input: './index.ts', // 源文件入口
   output: [
     {
       file: 'lib/index.esm.js', // package.json 中 "module": "dist/index.esm.js"

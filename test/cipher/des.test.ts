@@ -1,4 +1,4 @@
-import { DES, enc } from "../../lib";
+import { DES, enc } from "../../lib/index.cjs";
 import { TestConstant } from "../constant/test.constant";
 
 const mineResult = DES.encrypt(TestConstant.TEST_STR, TestConstant.TEST_KEY);

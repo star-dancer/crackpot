@@ -1,6 +1,6 @@
 {
   "name": "@star-dancer/crackpot",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "@star-dancer crypto lib",
   "author": "rikka",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "type": "git"
   },
   "scripts": {
-    "prepublish": "tsc --build --clean && tsc --build",
+    "prepublish": "npm run build",
     "build": "rollup -c"
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
     "rollup-plugin-dts": "^4.0.0",
     "rollup-plugin-typescript-paths": "^1.3.0",
     "ts-node": "^10.2.1",
+    "tslib": "^2.3.1",
     "typescript": "^4.3.5"
   }
 }
