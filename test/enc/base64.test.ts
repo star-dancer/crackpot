@@ -1,5 +1,4 @@
-import { Base64 } from "@/enc/base64";
-
+import { Base64 } from "../../src/enc";
 import { TestConstant } from "../constant/test.constant";
 
 const base64 = Base64.parse(TestConstant.TEST_KEY);
