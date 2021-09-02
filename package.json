@@ -1,8 +1,8 @@
 {
   "name": "@star-dancer/crackpot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "@star-dancer crypto lib",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "author": "rikka",
   "license": "MIT",
   "scripts": {
