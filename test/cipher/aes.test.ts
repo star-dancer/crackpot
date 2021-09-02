@@ -1,4 +1,4 @@
-import { AES, enc } from "../../lib";
+import { AES, enc } from "../../lib/index.cjs";
 import { TestConstant } from "../constant/test.constant";
 
 const test = AES.encrypt(TestConstant.TEST_STR, TestConstant.TEST_KEY);

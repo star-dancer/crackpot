@@ -1,4 +1,4 @@
-import { enc, RC4Drop } from "../../lib";
+import { enc, RC4Drop } from "../../lib/index.cjs";
 import { TestConstant } from "../constant/test.constant";
 
 const mineResult = RC4Drop.encrypt(

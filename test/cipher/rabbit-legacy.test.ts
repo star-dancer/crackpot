@@ -1,4 +1,4 @@
-import { enc, RabbitLegacy } from "../../lib";
+import { enc, RabbitLegacy } from "../../lib/index.cjs";
 import { TestConstant } from "../constant/test.constant";
 
 const mineResult = RabbitLegacy.encrypt(

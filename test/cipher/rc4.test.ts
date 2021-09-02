@@ -1,4 +1,4 @@
-import { enc, RC4 } from "../../lib";
+import { enc, RC4 } from "../../lib/index.cjs";
 import { TestConstant } from "../constant/test.constant";
 const mineResult = RC4.encrypt(TestConstant.TEST_STR, TestConstant.TEST_KEY);
 console.log(mineResult.toString());

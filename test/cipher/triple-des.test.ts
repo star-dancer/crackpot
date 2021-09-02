@@ -1,4 +1,4 @@
-import { enc, TripleDES } from "../../lib";
+import { enc, TripleDES } from "../../lib/index.cjs";
 import { TestConstant } from "../constant/test.constant";
 
 const mineResult = TripleDES.encrypt(

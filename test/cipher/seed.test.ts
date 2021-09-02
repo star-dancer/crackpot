@@ -1,4 +1,4 @@
-import { enc, SEED } from "../../lib";
+import { enc, SEED } from "../../lib/index.cjs";
 import { TestConstant } from "../constant/test.constant";
 console.log(enc);
 const mineResult = SEED.encrypt(TestConstant.TEST_STR, TestConstant.TEST_KEY);
